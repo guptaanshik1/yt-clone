@@ -1,5 +1,11 @@
+import { AppRoutes } from "./navigation";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <AppRoutes />
+    </>
+  );
 }
 
 export default App;
