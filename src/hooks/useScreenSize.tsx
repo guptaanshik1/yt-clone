@@ -3,9 +3,9 @@ import React from "react";
 
 const useScreenSize = () => {
   const [isSmallScreen, isMediumScreen, isLargeScreen] = useMediaQuery([
-    "(max-width: 600px)",
-    "(min-width: 601px) and (max-width: 900px)",
-    "(min-width: 901px)",
+    "(max-width: 719px)",
+    "(min-width: 720px) and (max-width: 798px)",
+    "(min-width: 799px)",
   ]);
   return { isSmallScreen, isMediumScreen, isLargeScreen };
 };
