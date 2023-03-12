@@ -1,7 +1,12 @@
 import React from "react";
+import ClosedSidebar from "./ClosedSidebar";
 
 const Sidebar = () => {
-  return <h1>Sidebar</h1>;
+  return (
+    <>
+      <ClosedSidebar />
+    </>
+  );
 };
 
 export default Sidebar;
