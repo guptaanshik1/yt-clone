@@ -15,6 +15,9 @@ const themeSlice = createSlice({
     toggleDarkMode: (state) => {
       state.isDark = !state.isDark;
     },
+    isDarkMode: state => {
+      
+    }
   },
 });
 
