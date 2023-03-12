@@ -1,4 +1,4 @@
-import { Flex, SimpleGrid, useColorMode } from "@chakra-ui/react";
+import { Flex, SimpleGrid } from "@chakra-ui/react";
 import useScreenSize from "../../hooks/useScreenSize";
 import SearchBar from "../SearchBar";
 import Logo from "./Logo";
