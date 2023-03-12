@@ -1,11 +1,19 @@
-import { Flex, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import {
+  Flex,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  useColorMode,
+} from "@chakra-ui/react";
 import React from "react";
 import { TfiSearch } from "react-icons/tfi";
 import { MdOutlineMic } from "react-icons/md";
+import useGetColorMode from "../hooks/useGetColorMode";
 
 const SearchBar = () => {
+  const { isDark } = useGetColorMode();
   const [isFocused, setIsFocused] = React.useState(false);
-
+  console.log("isDark", isDark);
   return (
     <InputGroup w="full">
       {isFocused && (
@@ -30,6 +38,7 @@ const SearchBar = () => {
             size={18}
             cursor={"pointer"}
             onClick={() => setSearchQuery("")}
+            color-{isDark ? "#FFFFFF" : "#000000"}
           />
         </InputRightElement>
       )} */}
@@ -44,7 +53,11 @@ const SearchBar = () => {
         <TfiSearch size={20} cursor={"pointer"} />
       </Flex>
       <Flex ml={"0.8em"} alignItems={"center"} justifyContent={"center"}>
-        <MdOutlineMic size={"25px"} cursor={"pointer"} />
+        <MdOutlineMic
+          size={"25px"}
+          cursor={"pointer"}
+          color={isDark ? "#FFFFFF" : "#000000"}
+        />
       </Flex>
     </InputGroup>
   );

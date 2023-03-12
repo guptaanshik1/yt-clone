@@ -10,9 +10,9 @@ import "./index.css";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ChakraProvider>
+      <ColorModeScript initialColorMode="light" />
       <Provider store={store}>
         <BrowserRouter>
-          <ColorModeScript initialColorMode="light" />
           <App />
         </BrowserRouter>
       </Provider>
