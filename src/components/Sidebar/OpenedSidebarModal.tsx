@@ -1,4 +1,5 @@
 import {
+  Box,
   Drawer,
   DrawerBody,
   DrawerContent,
@@ -11,9 +12,10 @@ import {
   moreFromYtIconNameMap,
   sidebarExploreIconsNameMap,
   sidebarIconsNameMap,
-} from "../utils/sidebarIconsNameMap";
-import Logo from "./Header/Logo";
-import OpenedSidebar from "./Sidebar/OpenedSidebar";
+} from "../../utils/sidebarIconsNameMap";
+import Logo from "../Header/Logo";
+import BottomLinks from "./BottomLinks";
+import OpenedSidebar from "./OpenedSidebar";
 
 interface IProps {
   isOpen: boolean;
@@ -22,12 +24,17 @@ interface IProps {
 
 const OpenedSidebarModal = ({ isOpen, onClose }: IProps) => {
   return (
-    <Drawer isOpen={isOpen} onClose={onClose} placement="left">
-      <DrawerOverlay />
-      <DrawerContent>
-        <DrawerHeader display={"flex"} alignItems={"center"}>
+    <Drawer
+      isOpen={isOpen}
+      onClose={onClose}
+      placement="left"
+      closeOnOverlayClick={false}
+    >
+      {/* <DrawerOverlay /> */}
+      <DrawerContent mt={"60px"}>
+        {/* <DrawerHeader display={"flex"} alignItems={"center"}>
           <Logo />
-        </DrawerHeader>
+        </DrawerHeader> */}
         <DrawerBody>
           <OpenedSidebar iconNameMap={sidebarIconsNameMap} />
           <>
@@ -39,7 +46,7 @@ const OpenedSidebarModal = ({ isOpen, onClose }: IProps) => {
             <OpenedSidebar iconNameMap={moreFromYtIconNameMap} />
           </>
           <OpenedSidebar iconNameMap={commonIconNameMap} />
-          {/* <BottomLinks /> */}
+          <BottomLinks />
         </DrawerBody>
       </DrawerContent>
     </Drawer>
