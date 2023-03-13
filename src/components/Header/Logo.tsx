@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { toggleSidebar } from "../../features/sidebarSlice";
 import useGetColorMode from "../../hooks/useGetColorMode";
-import OpenedSidebarModal from "../OpenedSidebarModal";
+import OpenedSidebarModal from "../Sidebar/OpenedSidebarModal";
 
 const Logo = () => {
   const dispatch = useAppDispatch();
-  const isOpened = useAppSelector((state) => state.sidebar.isOpen);
   const { isDark } = useGetColorMode();
+  const isSidebarOpened = useAppSelector((state) => state.sidebar.isOpen);
 
   const {
     isOpen: isSidebarOpen,
@@ -20,7 +20,7 @@ const Logo = () => {
 
   const handleSidebar = () => {
     dispatch(toggleSidebar());
-    isOpened ? onSidebarClose() : onSidebarOpen();
+    isSidebarOpened ? onSidebarClose() : onSidebarOpen();
   };
 
   return (
