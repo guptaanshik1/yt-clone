@@ -1,11 +1,14 @@
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import store from "./app/store";
 import "./index.css";
+
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -13,7 +16,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <ColorModeScript initialColorMode="light" />
       <Provider store={store}>
         <BrowserRouter>
-          <App />
+          <QueryClientProvider client={queryClient}>
+            <App />
+          </QueryClientProvider>
         </BrowserRouter>
       </Provider>
     </ChakraProvider>

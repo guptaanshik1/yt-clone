@@ -1,4 +1,6 @@
+import { Flex } from "@chakra-ui/react";
 import React from "react";
+import VideoCard from "./components/VideoCard";
 import { useHomePageContext } from "./utils/context";
 
 export default function HomePageView() {
