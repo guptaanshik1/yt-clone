@@ -7,6 +7,7 @@ import {
   DrawerOverlay,
   Text,
 } from "@chakra-ui/react";
+import { useAppSelector } from "../../app/hooks";
 import {
   commonIconNameMap,
   moreFromYtIconNameMap,
@@ -23,6 +24,8 @@ interface IProps {
 }
 
 const OpenedSidebarModal = ({ isOpen, onClose }: IProps) => {
+  const isMenuOpen = useAppSelector((state) => state.sidebar.isOpen);
+  if (!isMenuOpen) return null;
   return (
     <Drawer
       isOpen={isOpen}
@@ -31,10 +34,10 @@ const OpenedSidebarModal = ({ isOpen, onClose }: IProps) => {
       closeOnOverlayClick={false}
     >
       {/* <DrawerOverlay /> */}
-      <DrawerContent mt={"60px"}>
-        {/* <DrawerHeader display={"flex"} alignItems={"center"}>
+      <DrawerContent>
+        <DrawerHeader display={"flex"} alignItems={"center"}>
           <Logo />
-        </DrawerHeader> */}
+        </DrawerHeader>
         <DrawerBody>
           <OpenedSidebar iconNameMap={sidebarIconsNameMap} />
           <>
