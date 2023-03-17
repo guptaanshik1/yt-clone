@@ -3,17 +3,26 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  useColorMode,
+  InputRightElement,
 } from "@chakra-ui/react";
 import React from "react";
 import { TfiSearch } from "react-icons/tfi";
-import { MdOutlineMic } from "react-icons/md";
+import { MdClose, MdOutlineMic } from "react-icons/md";
 import useGetColorMode from "../hooks/useGetColorMode";
+import { useAppDispatch } from "../app/hooks";
+import { setAllSearchQuery } from "../features/searchSlice";
 
 const SearchBar = () => {
   const { isDark } = useGetColorMode();
+  const dispatch = useAppDispatch();
   const [isFocused, setIsFocused] = React.useState(false);
-  console.log("isDark", isDark);
+  const [searchQuery, setSearchQuery] = React.useState<string>("");
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+    dispatch(setAllSearchQuery(e.target.value));
+  };
+
   return (
     <InputGroup w="full">
       {isFocused && (
@@ -31,17 +40,19 @@ const SearchBar = () => {
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         position={"relative"}
+        value={searchQuery}
+        onChange={handleSearchChange}
       />
-      {/* {searchQuery.length > 0 && (
+      {searchQuery.length > 0 && (
         <InputRightElement position={"absolute"} mr="78px">
           <MdClose
             size={18}
             cursor={"pointer"}
             onClick={() => setSearchQuery("")}
-            color-{isDark ? "#FFFFFF" : "#000000"}
+            color={isDark ? "#FFFFFF" : "#000000"}
           />
         </InputRightElement>
-      )} */}
+      )}
       <Flex
         borderRightRadius={"full"}
         border={"1px solid grey"}
