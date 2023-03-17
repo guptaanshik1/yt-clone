@@ -8,9 +8,9 @@ interface IOptions {
   headers: headersType;
 }
 
-const getVideos = async (): Promise<any> => {
-  const endpoint = `${BASE_URL}/search/?q=New`;
-  const params = { hl: "en", gl: "IN" };
+const getVideos = async (q: string): Promise<any> => {
+  const endpoint = `${BASE_URL}/search`;
+  const params = { q, hl: "en", gl: "IN" };
   const options: IOptions = {
     params,
     headers: HEADERS,
@@ -20,10 +20,10 @@ const getVideos = async (): Promise<any> => {
   return data;
 };
 
-export default function useGetHomeVideos() {
+export default function useGetSearchVideos(q: string) {
   const { data, isLoading, refetch } = useQuery(
-    "home/videos",
-    () => getVideos(),
+    "search/videos",
+    () => getVideos(q),
     {
       onError(err) {
         console.log(err);

@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from "react";
 import { useQuery } from "react-query";
 import { BASE_URL, HEADERS, headersType } from "../../../constants/caller";
 
@@ -8,31 +7,30 @@ interface IOptions {
   headers: headersType;
 }
 
-const getVideos = async (): Promise<any> => {
-  const endpoint = `${BASE_URL}/search/?q=New`;
+const searchComplete = async (q: string) => {
+  const endpoint = `${BASE_URL}/auto-complete`;
   const params = { hl: "en", gl: "IN" };
   const options: IOptions = {
     params,
     headers: HEADERS,
   };
-
-  const { data } = await axios.get(endpoint, options);
-  return data;
+  const response = await axios.get(endpoint, options);
+  return response;
 };
 
-export default function useGetHomeVideos() {
-  const { data, isLoading, refetch } = useQuery(
-    "home/videos",
-    () => getVideos(),
+export default function useSearchComplete(q: string) {
+  const { data, isLoading } = useQuery(
+    "search/complete",
+    () => searchComplete(q),
     {
       onError(err) {
         console.log(err);
       },
     }
   );
+
   return {
     data,
     isLoading,
-    refetch,
   };
 }
