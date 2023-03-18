@@ -4,6 +4,7 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
 import { TfiSearch } from "react-icons/tfi";
@@ -11,6 +12,7 @@ import { MdClose, MdOutlineMic } from "react-icons/md";
 import useGetColorMode from "../hooks/useGetColorMode";
 import { useAppDispatch } from "../app/hooks";
 import { setAllSearchQuery } from "../features/searchSlice";
+import VoiceModal from "./VoiceModal";
 
 const SearchBar = () => {
   const { isDark } = useGetColorMode();
@@ -18,12 +20,19 @@ const SearchBar = () => {
   const [isFocused, setIsFocused] = React.useState(false);
   const [searchQuery, setSearchQuery] = React.useState<string>("");
 
+  const {
+    isOpen: isVoiceModalOpen,
+    onClose: onVoiceModalClose,
+    onOpen: onVoiceModalOpen,
+  } = useDisclosure();
+
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
     dispatch(setAllSearchQuery(e.target.value));
   };
 
   return (
+    <>
     <InputGroup w="full">
       {isFocused && (
         <InputLeftElement>
@@ -68,9 +77,12 @@ const SearchBar = () => {
           size={"25px"}
           cursor={"pointer"}
           color={isDark ? "#FFFFFF" : "#000000"}
+          onClick={() => onVoiceModalOpen()}
         />
       </Flex>
     </InputGroup>
+    <VoiceModal isOpen={isVoiceModalOpen} onClose={onVoiceModalClose} />
+    </>
   );
 };
 
