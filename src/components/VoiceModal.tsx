@@ -31,7 +31,6 @@ const VoiceSearchModal = ({ isOpen, onClose }: IProps) => {
     const recognition = new window.webkitSpeechRecognition();
 
     if (isOpen) {
-      console.log("isOpen:", isOpen);
       recognition.onresult = (e: any) => {
         const finalResult = e.results[e.results.length - 1];
         const transcript = finalResult[0].transcript;
