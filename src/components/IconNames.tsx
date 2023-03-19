@@ -5,18 +5,21 @@ import {
   MdOutlineFeedback,
   MdOutlineSubscriptions,
   MdOutlineVideoLibrary,
+  MdSecurity,
 } from "react-icons/md";
 import { VscHistory } from "react-icons/vsc";
 import { HiFire } from "react-icons/hi";
 import { RiFlagFill, RiShoppingBag2Line } from "react-icons/ri";
-import { CgMusicNote } from "react-icons/cg";
+import { CgMusicNote, CgProfile } from "react-icons/cg";
 import { SiYoutubegaming } from "react-icons/si";
 import { ImNewspaper } from "react-icons/im";
-import { BsTrophy, BsYoutube } from "react-icons/bs";
+import { BsKeyboard, BsMoon, BsTrophy, BsYoutube } from "react-icons/bs";
 import { AiOutlineBulb } from "react-icons/ai";
 import { GiClothesline } from "react-icons/gi";
 import { VscSettingsGear } from "react-icons/vsc";
 import { TfiHelpAlt } from "react-icons/tfi";
+import { HiOutlineLanguage } from "react-icons/hi2";
+import { CiGlobe } from "react-icons/ci";
 import { IconProps } from "../types/types";
 
 const Icon: React.FC<IconProps> = ({ iconName, ...props }) => {
@@ -67,6 +70,18 @@ const Icon: React.FC<IconProps> = ({ iconName, ...props }) => {
       return <TfiHelpAlt {...props} />;
     case "Send feedback":
       return <MdOutlineFeedback {...props} />;
+    case "HalfMoon":
+      return <BsMoon {...props} />;
+    case "Profile":
+      return <CgProfile {...props} />;
+    case "Language":
+      return <HiOutlineLanguage {...props} />;
+    case "Restriction":
+      return <MdSecurity {...props} />;
+    case "Globe":
+      return <CiGlobe {...props} />;
+    case "Keyboard":
+      return <BsKeyboard {...props} />;
     default:
       return null;
   }
