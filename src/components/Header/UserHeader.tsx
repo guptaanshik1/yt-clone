@@ -3,11 +3,12 @@ import React from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { RxDotsVertical } from "react-icons/rx";
 import useGetColorMode from "../../hooks/useGetColorMode";
-import MenuDropdown from "./MenuDropdown";
+import MenuDropdown from "./HeaderMenu/MenuDropdown";
+import MenuWrapper from "./HeaderMenu/MenuWrapper";
 
 const UserHeader = () => {
   const { isDark } = useGetColorMode();
-  const [isShowMenu, setIsShowMenu] = React.useState(false);
+
   return (
     <Flex justifyContent={"center"} alignContent={"center"}>
       <Flex
@@ -32,7 +33,7 @@ const UserHeader = () => {
           >
             <RxDotsVertical size={"20px"} />
           </MenuButton>
-          <MenuDropdown isShowMenu={isShowMenu} />
+          <MenuWrapper />
         </Menu>
       </Flex>
       <Flex
