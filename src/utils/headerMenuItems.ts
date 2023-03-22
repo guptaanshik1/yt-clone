@@ -1,4 +1,14 @@
-export const headerMenuItems = [
+export interface IMenuItem {
+  label: string;
+  iconName: string;
+  subMenuHeading?: string;
+  currentlySelected?: string;
+  subMenuItems?: {
+    label: string;
+  }[];
+}
+
+export const headerMenuItems: IMenuItem[] = [
   {
     label: "Your data in YouTube",
     iconName: "Profile",
@@ -7,7 +17,7 @@ export const headerMenuItems = [
     label: "Appearance",
     iconName: "HalfMoon",
     subMenuHeading: "Appearance",
-    currentLySelected: "",
+    currentlySelected: "",
     subMenuItems: [
       { label: "Use Device Theme" },
       { label: "Dark Theme" },
