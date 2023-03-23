@@ -17,7 +17,7 @@ export const headerMenuItems: IMenuItem[] = [
     label: "Appearance",
     iconName: "HalfMoon",
     subMenuHeading: "Appearance",
-    currentlySelected: "",
+    currentlySelected: "Light",
     subMenuItems: [
       { label: "Use Device Theme" },
       { label: "Dark Theme" },
@@ -28,7 +28,7 @@ export const headerMenuItems: IMenuItem[] = [
     label: "Language",
     iconName: "Language",
     subMenuHeading: "Choose Your Language",
-    currentlySelected: "",
+    currentlySelected: "British English",
     subMenuItems: [
       { label: "Afrikaans" },
       { label: "Azarbaycan" },
@@ -66,7 +66,7 @@ export const headerMenuItems: IMenuItem[] = [
     label: "Location",
     iconName: "Globe",
     subMenuHeading: "Choose Your Location",
-    currentlySelected: "",
+    currentlySelected: "India",
     subMenuItems: [
       { label: "Algeria" },
       { label: "Argentina" },

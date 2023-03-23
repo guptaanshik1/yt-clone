@@ -1,29 +1,32 @@
 import { Divider, Flex, MenuItem, MenuList, Text } from "@chakra-ui/react";
 import React, { MouseEventHandler } from "react";
 import { BsChevronRight } from "react-icons/bs";
-import { useAppDispatch } from "../../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { setSelectedMenu } from "../../../features/menuSlice";
 import { headerMenuItems, IMenuItem } from "../../../utils/headerMenuItems";
 import Icon from "../../IconNames";
 
 interface IProps {
-  isShowMenu: boolean;
   step: number;
   setStep: (num: number) => void;
 }
 
-const MenuDropdown = ({ isShowMenu, step, setStep }: IProps) => {
+const MenuDropdown = ({ step, setStep }: IProps) => {
   const dispatch = useAppDispatch();
+  const currentlySelectedItem = useAppSelector(
+    (state) => state.menu.currentlySelected
+  );
+
   const [currentItem, setCurrentItem] =
     React.useState<Partial<IMenuItem[]>>(headerMenuItems);
 
   const handleMenuClick = (item: any): MouseEventHandler<HTMLButtonElement> => {
-    return (e: React.MouseEvent<HTMLButtonElement>): void => {
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
       setCurrentItem(item);
       dispatch(setSelectedMenu(item));
       setStep(2);
     };
-
+    return handleClick;
     /**
      The handleMenuClick function is a higher-order function because it returns another function. The returned function is a closure because it has access to the item and currentItem variables declared in the outer handleMenuClick function.
 
@@ -50,7 +53,11 @@ Overall, this approach is a common pattern in React for creating event handlers 
                 <Flex justifyContent={"center"} alignItems={"center"}>
                   <Icon iconName={item.iconName} size={"18px"} />
                   <Text ml={"14px"} fontSize={"16px"}>
-                    {item.label}
+                    {`${item?.label} ${
+                      item?.subMenuItems
+                        ? `: ${currentlySelectedItem[item.label]}`
+                        : ''
+                    }`}
                   </Text>
                 </Flex>
                 {item?.subMenuHeading && <BsChevronRight />}
@@ -64,30 +71,3 @@ Overall, this approach is a common pattern in React for creating event handlers 
 };
 
 export default MenuDropdown;
-
-{
-  /* {headerMenuItems.map((item) => {
-        return ( */
-}
-//     <MenuItem>
-//       <Flex
-//         justifyContent={"space-between"}
-//         alignItems={"center"}
-//         p={"2px"}
-//         w={"full"}
-//       >
-//         <Flex
-//           justifyContent={"center"}
-//           alignItems={"center"}
-//           onClick={handleMenuClick}
-//         >
-//           <Icon iconName={item.iconName} size={"18px"} />
-//           <Text ml={"14px"} fontSize={"16px"}>
-//             {item.label}
-//           </Text>
-//         </Flex>
-//         {item?.subMenuHeading && <BsChevronRight />}
-//       </Flex>
-//     </MenuItem>
-
-// </MenuList>

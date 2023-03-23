@@ -2,12 +2,16 @@ import { Flex, IconButton, Menu, MenuButton, Text } from "@chakra-ui/react";
 import React from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { RxDotsVertical } from "react-icons/rx";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { toggleMenu } from "../../features/menuSlice";
 import useGetColorMode from "../../hooks/useGetColorMode";
 import MenuDropdown from "./HeaderMenu/MenuDropdown";
 import MenuWrapper from "./HeaderMenu/MenuWrapper";
 
 const UserHeader = () => {
   const { isDark } = useGetColorMode();
+  const dispatch = useAppDispatch();
+  const isMenuOpen = useAppSelector((state) => state.menu.isMenuOpen);
 
   return (
     <Flex justifyContent={"center"} alignContent={"center"}>
@@ -18,7 +22,7 @@ const UserHeader = () => {
         m={"0.4em 2em"}
         cursor={"pointer"}
       >
-        <Menu>
+        <Menu isOpen={isMenuOpen}>
           <MenuButton
             as={IconButton}
             background="none"
@@ -30,6 +34,7 @@ const UserHeader = () => {
               rounded: true,
               borderRadius: "full",
             }}
+            onClick={() => dispatch(toggleMenu())}
           >
             <RxDotsVertical size={"20px"} />
           </MenuButton>
