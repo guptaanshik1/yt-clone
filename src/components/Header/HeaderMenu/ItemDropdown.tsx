@@ -1,7 +1,16 @@
-import { Divider, Flex, Heading, MenuList, Text } from "@chakra-ui/react";
-import React from "react";
+import {
+  Divider,
+  Flex,
+  Heading,
+  MenuItem,
+  MenuList,
+  Text,
+} from "@chakra-ui/react";
+import { MouseEventHandler } from "react";
 import { BsArrowLeft } from "react-icons/bs";
-import { useAppSelector } from "../../../app/hooks";
+import { IoCheckmark } from "react-icons/io5";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { setCurrentlySelectedItem } from "../../../features/menuSlice";
 
 interface IProps {
   step: number;
@@ -9,19 +18,54 @@ interface IProps {
 }
 
 const ItemDropdown = ({ step, setStep }: IProps) => {
+  const dispatch = useAppDispatch();
   const selectedMenu = useAppSelector((state) => state.menu.selectedMenu);
+  const currentlySelectedItem = useAppSelector(
+    (state) => state.menu.currentlySelected
+  );
+
+  const handleItemSelection = (
+    item: any
+  ): MouseEventHandler<HTMLButtonElement> => {
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      dispatch(
+        setCurrentlySelectedItem({
+          [selectedMenu.label]: item.label,
+        })
+      );
+      setStep(1);
+    };
+    return handleClick;
+  };
+  console.log("currentlySelectedItem:", currentlySelectedItem[selectedMenu.label]);
 
   return (
     <MenuList w={"300px"}>
-      <Flex mb={".8em"} alignItems={"flex-start"} m={"0 0.4em"}>
-        <BsArrowLeft size={"20px"} />
+      <Flex mb={"1em"} alignItems={"flex-start"} mx={"0.4em"}>
+        <BsArrowLeft size={"20px"} onClick={() => setStep(1)} />
         <Heading ml={"1em"} size={"md"}>
           {selectedMenu.subMenuHeading}
         </Heading>
       </Flex>
       <Divider />
       {selectedMenu?.subMenuItems?.map((item) => (
-        <Text key={item.label}>{item.label}</Text>
+        <MenuItem onClick={handleItemSelection(item)}>
+          <Flex
+            key={item?.label}
+            alignItems={"center"}
+            justifyContent={"flex-start"}
+            fontWeight={500}
+            p={"4px 8px"}
+            m={"4px 5px"}
+          >
+            {currentlySelectedItem[selectedMenu.label] == item.label && (
+              <IoCheckmark size={"24px"} />
+            )}
+            <Text ml={"8px"} fontSize={"22px"}>
+              {item?.label}
+            </Text>
+          </Flex>
+        </MenuItem>
       ))}
     </MenuList>
   );
