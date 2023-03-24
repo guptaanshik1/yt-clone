@@ -38,9 +38,10 @@ const Header = () => {
             mt={"50px"}
             position={"absolute"}
             width={"30%"}
-            h={"100px"}
-            backgroundColor={"#000000"}
+            h={"auto"}
+            backgroundColor={"#FFFFFF"}
             borderRadius={"12px"}
+            boxShadow={"0px 0px 4px rgba(0, 0, 0, 0.35)"}
           >
             <SearchSuggestions />
           </Flex>
