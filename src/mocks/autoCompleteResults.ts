@@ -1,0 +1,16 @@
+export const searchData = [
+  "despacito",
+  "despacito justin bieber",
+  "despacito lyrics",
+  "despacito song",
+  "despacito remix",
+  "despacito slowed",
+  "despacito dance",
+  "despacito english version",
+  "despacito karaoke",
+  "despacito luis fonsi",
+  "despacito piano",
+  "despacito cover",
+  "despacito 1 hour",
+  "despacito guitar",
+];
