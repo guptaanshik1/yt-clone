@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import { BASE_URL, HEADERS, headersType } from "../../../constants/caller";
+import { BASE_URL, HEADERS, headersType } from "../constants/caller";
 
 interface IOptions {
   params: Object;
