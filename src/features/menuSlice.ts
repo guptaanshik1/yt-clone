@@ -10,6 +10,7 @@ interface IInitialState {
     RestrictedMode?: string;
   };
   selectedMenu: {
+    label: string;
     subMenuHeading?: string;
     currentlySelected?: string;
     subMenuItems?: Array<{ label: string }>;
@@ -19,12 +20,13 @@ interface IInitialState {
 const initialState: IInitialState = {
   isMenuOpen: false,
   currentlySelected: {
-    Appearance: "",
-    Language: "",
-    Location: "",
+    Appearance: "Light Theme",
+    Language: "English (US)",
+    Location: "India",
     RestrictedMode: "",
   },
   selectedMenu: {
+    label: "",
     subMenuHeading: "",
     currentlySelected: "",
     subMenuItems: [],
