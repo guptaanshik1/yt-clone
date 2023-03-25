@@ -10,7 +10,6 @@ import UserHeader from "./UserHeader";
 const Header = () => {
   const { isSmallScreen } = useScreenSize();
   const searchQuery = useAppSelector((state) => getSearchText(state));
-  console.log("searchQuery:", searchQuery);
 
   return (
     <SimpleGrid
@@ -22,6 +21,7 @@ const Header = () => {
       alignItems={"center"}
       position={"sticky"}
       top={0}
+      backgroundColor={"#FFFFFF"}
     >
       <Flex
         justifyContent={"flex-start"}
