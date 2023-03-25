@@ -42,7 +42,6 @@ Overall, this approach is a common pattern in React for creating event handlers 
     <>
       <MenuList w={"300px"}>
         {headerMenuItems.map((item) => {
-          console.log(item.currentlySelected);
           return (
             <MenuItem onClick={handleMenuClick(item)}>
               <Flex

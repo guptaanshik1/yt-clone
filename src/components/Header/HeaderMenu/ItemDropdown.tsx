@@ -11,6 +11,7 @@ import { BsArrowLeft } from "react-icons/bs";
 import { IoCheckmark } from "react-icons/io5";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { setCurrentlySelectedItem } from "../../../features/menuSlice";
+import useGetColorMode from "../../../hooks/useGetColorMode";
 
 interface IProps {
   step: number;
@@ -18,6 +19,7 @@ interface IProps {
 }
 
 const ItemDropdown = ({ step, setStep }: IProps) => {
+  const { toggleColorMode } = useGetColorMode();
   const dispatch = useAppDispatch();
   const selectedMenu = useAppSelector((state) => state.menu.selectedMenu);
   const currentlySelectedItem = useAppSelector(
@@ -33,6 +35,9 @@ const ItemDropdown = ({ step, setStep }: IProps) => {
           [selectedMenu.label]: item.label,
         })
       );
+      if (selectedMenu.label == "Appearance") {
+        toggleColorMode();
+      }
       setStep(1);
     };
     return handleClick;
