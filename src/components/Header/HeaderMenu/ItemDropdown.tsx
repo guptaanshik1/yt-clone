@@ -6,7 +6,7 @@ import {
   MenuList,
   Text,
 } from "@chakra-ui/react";
-import { MouseEventHandler } from "react";
+import React, { MouseEventHandler } from "react";
 import { BsArrowLeft } from "react-icons/bs";
 import { IoCheckmark } from "react-icons/io5";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
@@ -37,7 +37,6 @@ const ItemDropdown = ({ step, setStep }: IProps) => {
     };
     return handleClick;
   };
-  console.log("currentlySelectedItem:", currentlySelectedItem[selectedMenu.label]);
 
   return (
     <MenuList w={"300px"}>
@@ -58,10 +57,12 @@ const ItemDropdown = ({ step, setStep }: IProps) => {
             p={"4px 8px"}
             m={"4px 5px"}
           >
-            {currentlySelectedItem[selectedMenu.label] == item.label && (
-              <IoCheckmark size={"24px"} />
-            )}
-            <Text ml={"8px"} fontSize={"22px"}>
+            <Flex w={"20px"}>
+              {currentlySelectedItem[
+                selectedMenu.label as keyof typeof currentlySelectedItem
+              ] == item.label && <IoCheckmark size={"24px"} />}
+            </Flex>
+            <Text ml={"8px"} fontSize={"18px"} fontWeight={300}>
               {item?.label}
             </Text>
           </Flex>

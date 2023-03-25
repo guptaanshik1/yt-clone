@@ -17,7 +17,7 @@ export const headerMenuItems: IMenuItem[] = [
     label: "Appearance",
     iconName: "HalfMoon",
     subMenuHeading: "Appearance",
-    currentlySelected: "Light",
+    currentlySelected: "Light Theme",
     subMenuItems: [
       { label: "Use Device Theme" },
       { label: "Dark Theme" },
@@ -28,7 +28,7 @@ export const headerMenuItems: IMenuItem[] = [
     label: "Language",
     iconName: "Language",
     subMenuHeading: "Choose Your Language",
-    currentlySelected: "British English",
+    currentlySelected: "English (US)",
     subMenuItems: [
       { label: "Afrikaans" },
       { label: "Azarbaycan" },

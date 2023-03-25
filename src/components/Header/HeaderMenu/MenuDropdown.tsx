@@ -42,6 +42,7 @@ Overall, this approach is a common pattern in React for creating event handlers 
     <>
       <MenuList w={"300px"}>
         {headerMenuItems.map((item) => {
+          console.log(item.currentlySelected);
           return (
             <MenuItem onClick={handleMenuClick(item)}>
               <Flex
@@ -55,8 +56,18 @@ Overall, this approach is a common pattern in React for creating event handlers 
                   <Text ml={"14px"} fontSize={"16px"}>
                     {`${item?.label} ${
                       item?.subMenuItems
-                        ? `: ${currentlySelectedItem[item.label]}`
-                        : ''
+                        ? `${
+                            currentlySelectedItem[
+                              item.label as keyof typeof currentlySelectedItem
+                            ]
+                          }`
+                          ? `: ${
+                              currentlySelectedItem[
+                                item.label as keyof typeof currentlySelectedItem
+                              ]
+                            }`
+                          : `: ${item?.currentlySelected}`
+                        : ""
                     }`}
                   </Text>
                 </Flex>
