@@ -15,8 +15,7 @@ export default function HomePageView() {
     >
       {
         // @ts-ignore
-        !isVideosDataLoading &&
-          videosData?.contents?.map((data) => (
+        !isVideosDataLoading && videosData?.contents?.map((data) => (
             <VideoCard key={data?.video?.videoId} {...data?.video} />
           ))
       }
