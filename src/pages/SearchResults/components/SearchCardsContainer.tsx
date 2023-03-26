@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useSearchResultsContext } from "../utils/context";
 import SearchCard from "./SearchCard";
 
@@ -9,7 +10,9 @@ const SearchCardsContainer = () => {
       {
         // @ts-ignore
         contents?.map((data) => (
-          <SearchCard key={data?.video?.videoId} {...data.video} />
+          <Link key={data?.video?.videoId} to={`/watch?v=${data?.video?.videoId}`}>
+            <SearchCard {...data.video} />
+          </Link>
         ))
       }
     </>
