@@ -35,7 +35,10 @@ const ItemDropdown = ({ step, setStep }: IProps) => {
           [selectedMenu.label]: item.label,
         })
       );
-      if (selectedMenu.label == "Appearance") {
+      if (
+        selectedMenu.label == "Appearance" &&
+        currentlySelectedItem.Appearance != item.label
+      ) {
         toggleColorMode();
       }
       setStep(1);
