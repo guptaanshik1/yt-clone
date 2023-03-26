@@ -1,7 +1,5 @@
 import {
   Flex,
-  Grid,
-  GridItem,
   Image,
   ListItem,
   Text,

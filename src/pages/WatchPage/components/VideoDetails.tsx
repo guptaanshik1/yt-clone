@@ -10,17 +10,33 @@ import {
 } from "@chakra-ui/react";
 import useGetColorMode from "../../../hooks/useGetColorMode";
 import { useWatchPageContext } from "../utils/context";
-import { BiDislike, BiLike } from "react-icons/bi";
 import { TbShare3 } from "react-icons/tb";
 import { formatViewCount } from "../../../utils/viewCountFormatter";
 import React from "react";
 import { TfiDownload } from "react-icons/tfi";
 import { BsThreeDots } from "react-icons/bs";
+import {
+  AiOutlineDislike,
+  AiOutlineLike,
+  AiTwotoneLike,
+  AiTwotoneDislike,
+} from "react-icons/ai";
 
 const VideoDetails = () => {
   const { videoDetails } = useWatchPageContext();
   const [isLiked, setIsLiked] = React.useState(false);
+  const [isDisliked, setIsDisliked] = React.useState(false);
   const { colorMode } = useGetColorMode();
+
+  const handleLiking = () => {
+    setIsDisliked(false);
+    setIsLiked(!isLiked);
+  };
+
+  const handleDisliking = () => {
+    setIsLiked(false);
+    setIsDisliked(!isDisliked);
+  };
 
   return (
     <Flex
@@ -73,12 +89,20 @@ const VideoDetails = () => {
             <Flex
               cursor={"pointer"}
               alignItems={"center"}
+              onClick={handleLiking}
               _hover={{ opacity: 0.4 }}
             >
-              <BiLike
-                size={"22px"}
-                color={colorMode == "dark" ? "#FFFFFF" : "#000000"}
-              />
+              {!isLiked ? (
+                <AiOutlineLike
+                  size={"22px"}
+                  color={colorMode == "dark" ? "#FFFFFF" : "#000000"}
+                />
+              ) : (
+                <AiTwotoneLike
+                  size={"22px"}
+                  color={colorMode == "dark" ? "#FFFFFF" : "#000000"}
+                />
+              )}
               <Text
                 ml={"8px"}
                 fontSize={"10px"}
@@ -92,11 +116,19 @@ const VideoDetails = () => {
               cursor={"pointer"}
               alignItems={"center"}
               _hover={{ opacity: 0.4 }}
+              onClick={handleDisliking}
             >
-              <BiDislike
-                size={"22px"}
-                color={colorMode == "dark" ? "#FFFFFF" : "#000000"}
-              />
+              {!isDisliked ? (
+                <AiOutlineDislike
+                  size={"22px"}
+                  color={colorMode == "dark" ? "#FFFFFF" : "#000000"}
+                />
+              ) : (
+                <AiTwotoneDislike
+                  size={"22px"}
+                  color={colorMode == "dark" ? "#FFFFFF" : "#000000"}
+                />
+              )}
             </Flex>
           </Flex>
           {/* Share button */}
