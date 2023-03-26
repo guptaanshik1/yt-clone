@@ -1,5 +1,6 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { Outlet } from "react-router-dom";
+import { useAppSelector } from "../app/hooks";
 import Header from "../components/Header/Header";
 import Sidebar from "../components/Sidebar/Sidebar";
 
@@ -8,10 +9,11 @@ interface IProps {
 }
 
 const Layout = ({ children }: IProps) => {
+  const showSidebar = useAppSelector((state) => state.sidebar.showSidebar);
   return (
     <>
       <Header />
-      <Sidebar />
+      {showSidebar && <Sidebar />}
       <Outlet />
     </>
   );

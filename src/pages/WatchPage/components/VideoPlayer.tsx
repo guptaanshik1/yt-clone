@@ -1,7 +1,21 @@
+import { Flex } from "@chakra-ui/react";
 import React from "react";
+import { useWatchPageContext } from "../utils/context";
 
 const VideoPlayer = () => {
-  return <div>VideoPlayer</div>;
+  const { videoId } = useWatchPageContext();
+  return (
+    <Flex m={"20px"}>
+      <iframe
+        width={"1000"}
+        height={"500"}
+        title={"Youtube video player"}
+        src={`https://www.youtube.com/embed/${videoId}`}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      />
+    </Flex>
+  );
 };
 
 export default VideoPlayer;
