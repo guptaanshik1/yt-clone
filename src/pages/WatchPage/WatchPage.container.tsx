@@ -17,7 +17,8 @@ export default function WatchPageContainer() {
       value={{ 
         // videoDetails,
         // isVideoDetailsLoading
-        videoDetails: data
+        videoDetails: data,
+        videoId
       }}
     >
       <WatchPageView />
