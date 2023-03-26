@@ -8,15 +8,15 @@ interface IOptions {
 }
 
 const getVideoDetails = async (id: string): Promise<any> => {
-  const endpoint = `${BASE_URL}/video/details/`;
-  const params = { id, hl: "en", gl: "US" };
+  const endpoint = `${BASE_URL}/video/details/?id=${id}`;
+  const params = { hl: "en", gl: "US" };
   const headers = HEADERS;
   const options: IOptions = {
     params,
     headers,
   };
-  const response = await axios.get(endpoint, options);
-  return response;
+  const { data } = await axios.get(endpoint, options);
+  return data;
 };
 
 export default function useGetVideoDetails(id: string) {

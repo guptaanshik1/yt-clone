@@ -1,10 +1,11 @@
 import { Flex } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 import VideoCard from "./components/VideoCard";
 import { useHomePageContext } from "./utils/context";
 
 export default function HomePageView() {
-  const {videosData, isVideosDataLoading} = useHomePageContext()
+  const { videosData, isVideosDataLoading } = useHomePageContext();
   return (
     <Flex
       flexWrap={"wrap"}
@@ -16,9 +17,14 @@ export default function HomePageView() {
       {
         // @ts-ignore
         !isVideosDataLoading && videosData?.contents?.map((data) => (
-            <VideoCard key={data?.video?.videoId} {...data?.video} />
+            <Link
+              key={data?.video?.videoId}
+              to={`/watch?v=${data?.video?.videoId}`}
+            >
+              <VideoCard {...data?.video} />
+            </Link>
           ))
       }
     </Flex>
-  )
+  );
 }
