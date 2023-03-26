@@ -1,6 +1,7 @@
 import React from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { closeSidebar, openSidebar } from "../../features/sidebarSlice";
+import VideoDetails from "./components/VideoDetails";
 import VideoPlayer from "./components/VideoPlayer";
 
 export default function WatchPageView() {
@@ -16,6 +17,7 @@ export default function WatchPageView() {
   return (
     <>
       <VideoPlayer />
+      <VideoDetails />
     </>
   );
 }

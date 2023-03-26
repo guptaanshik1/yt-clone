@@ -1,6 +1,7 @@
 import { Flex, SimpleGrid } from "@chakra-ui/react";
 import { useAppSelector } from "../../app/hooks";
 import { getSearchText } from "../../features/searchSlice";
+import useGetColorMode from "../../hooks/useGetColorMode";
 import useScreenSize from "../../hooks/useScreenSize";
 import SearchBar from "../SearchBar";
 import SearchSuggestions from "../SearchSuggestions";
@@ -9,6 +10,7 @@ import UserHeader from "./UserHeader";
 
 const Header = () => {
   const { isSmallScreen } = useScreenSize();
+  const {colorMode} = useGetColorMode()
   const searchQuery = useAppSelector((state) => getSearchText(state));
 
   return (
@@ -21,7 +23,7 @@ const Header = () => {
       alignItems={"center"}
       position={"sticky"}
       top={0}
-      backgroundColor={"#FFFFFF"}
+      backgroundColor={colorMode == "dark" ? "rgb(26 32 44)" : "#FFFFFF"}
     >
       <Flex
         justifyContent={"flex-start"}
