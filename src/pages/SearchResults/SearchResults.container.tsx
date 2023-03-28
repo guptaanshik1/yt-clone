@@ -11,6 +11,7 @@ export default function SearchResultsContainer() {
   // const { data: searchResults, isLoading: isSearchResultsLoading } =
   //   useGetSearchVideos(searchQuery);
   const { filterGroups, contents } = data;
+  
 
   return (
     <SearchResultsContext.Provider
