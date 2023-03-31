@@ -40,7 +40,7 @@ const VideoDetails = () => {
 
   return (
     <Flex
-      w={"1000px"}
+      w={"900px"}
       flexDir={"column"}
       m={"20px"}
       justifyContent={"space-between"}

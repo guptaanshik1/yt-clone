@@ -6,7 +6,7 @@ const VideoPlayer = () => {
   return (
     <Flex m={"20px"}>
       <iframe
-        width={"1000"}
+        width={"900"}
         height={"450"}
         title={"Youtube video player"}
         src={`https://www.youtube.com/embed/${videoId}`}
