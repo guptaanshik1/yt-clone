@@ -1,3 +1,4 @@
+import { Flex } from "@chakra-ui/react";
 import React from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { closeSidebar, openSidebar } from "../../features/sidebarSlice";
@@ -16,10 +17,14 @@ export default function WatchPageView() {
   }, []);
 
   return (
-    <>
-      <VideoPlayer />
-      <VideoDetails />
-      <Container />
-    </>
+    <Flex>
+      <Flex flexDir={"column"}>
+        <VideoPlayer />
+        <VideoDetails />
+      </Flex>
+      <Flex flexDir={"column"} mt={"20px"} w={"100%"} mr={"10px"}>
+        <Container />
+      </Flex>
+    </Flex>
   );
 }
