@@ -6,10 +6,8 @@ import DisplayComments from "./DisplayComments";
 import PostComment from "./PostComment";
 
 const CommentsContainer = () => {
-  const { comments } = useWatchPageContext();
-  const { totalCommentsCount, comments: allComments } = comments;
   return (
-    <Flex>
+    <Flex flexDir={"column"} w={"900px"} mx={"20px"}>
       <CommentsTop />
       <PostComment />
       <DisplayComments />
