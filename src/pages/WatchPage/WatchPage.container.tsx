@@ -23,6 +23,7 @@ export default function WatchPageContainer() {
   // );
 
   const [isShowFullDesc, setIsShowFullDesc] = React.useState(false);
+  const { totalCommentsCount, comments: allComments } = comments;
 
   return (
     <WatchPageContext.Provider
@@ -35,7 +36,8 @@ export default function WatchPageContainer() {
         videoId,
         isShowFullDesc,
         setIsShowFullDesc,
-        comments,
+        totalCommentsCount,
+        comments: allComments,
       }}
     >
       <WatchPageView />

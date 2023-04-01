@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Divider, Flex } from "@chakra-ui/react";
 import React from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { closeSidebar, openSidebar } from "../../features/sidebarSlice";
@@ -22,6 +22,7 @@ export default function WatchPageView() {
       <Flex flexDir={"column"}>
         <VideoPlayer />
         <VideoDetails />
+        <Divider w={"95%"} my={"10px"} mx={"20px"} />
         <CommentsContainer />
       </Flex>
       <Flex flexDir={"column"} mt={"20px"} w={"100%"} mr={"10px"}>
