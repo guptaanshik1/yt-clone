@@ -1,0 +1,81 @@
+{
+  "0": {
+    "comments": [
+      {
+        "author": {
+          "avatar": [
+            {
+              "height": 48,
+              "url": "https://yt3.ggpht.com/ytc/AL5GRJWDYXmBjhn3G-0ynjtiwARA0KLH3jTvC6xGaTu8=s48-c-k-c0x00ffffff-no-rj",
+              "width": 48
+            },
+            {
+              "height": 88,
+              "url": "https://yt3.ggpht.com/ytc/AL5GRJWDYXmBjhn3G-0ynjtiwARA0KLH3jTvC6xGaTu8=s88-c-k-c0x00ffffff-no-rj",
+              "width": 88
+            },
+            {
+              "height": 176,
+              "url": "https://yt3.ggpht.com/ytc/AL5GRJWDYXmBjhn3G-0ynjtiwARA0KLH3jTvC6xGaTu8=s176-c-k-c0x00ffffff-no-rj",
+              "width": 176
+            }
+          ],
+          "badges": [],
+          "channelId": "UCssWuTdNCWN4RSF3wHzzjMw",
+          "isChannelOwner": true,
+          "title": "Monsterlessons Academy"
+        },
+        "commentId": "Ugyc13lvoaWW4Iskvt94AaABAg.9ntA27gIthk9ntDLfRqADO",
+        "content": "No, in scss we declare variables differently and they are just transpiled in css. css variables work natively in browser and are not stipped away like scss",
+        "creatorHeart": false,
+        "paid": {
+          "amount": null,
+          "status": false
+        },
+        "publishedTimeText": "3 days ago",
+        "stats": {
+          "votes": 0
+        }
+      },
+      {
+        "author": {
+          "avatar": [
+            {
+              "height": 48,
+              "url": "https://yt3.ggpht.com/7L4w0apLtOrG80WB7tBtX0ejMEE6alA0uK2jGxPxXaEZKz0lAmoj89lfz3Z0vJ6gUkfZy6BBBw=s48-c-k-c0x00ffffff-no-rj",
+              "width": 48
+            },
+            {
+              "height": 88,
+              "url": "https://yt3.ggpht.com/7L4w0apLtOrG80WB7tBtX0ejMEE6alA0uK2jGxPxXaEZKz0lAmoj89lfz3Z0vJ6gUkfZy6BBBw=s88-c-k-c0x00ffffff-no-rj",
+              "width": 88
+            },
+            {
+              "height": 176,
+              "url": "https://yt3.ggpht.com/7L4w0apLtOrG80WB7tBtX0ejMEE6alA0uK2jGxPxXaEZKz0lAmoj89lfz3Z0vJ6gUkfZy6BBBw=s176-c-k-c0x00ffffff-no-rj",
+              "width": 176
+            }
+          ],
+          "badges": [],
+          "channelId": "UCzkFQ5qKz3vlCs7osBqYvEQ",
+          "isChannelOwner": false,
+          "title": "Vaibhav Shrivastava"
+        },
+        "commentId": "Ugyc13lvoaWW4Iskvt94AaABAg.9ntA27gIthk9ntDzKq-ThM",
+        "content": " @Monsterlessons Academy  oh thanks bro, I will try to read more about it",
+        "creatorHeart": false,
+        "paid": {
+          "amount": null,
+          "status": false
+        },
+        "publishedTimeText": "3 days ago",
+        "stats": {
+          "votes": 0
+        }
+      }
+    ],
+    "cursorNext": null,
+    "filters": null,
+    "totalCommentsCount": null
+  }
+}
