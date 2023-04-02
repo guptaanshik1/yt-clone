@@ -122,7 +122,7 @@ const Comment = ({ comment }: IProps) => {
             />
           )}
           {comment?.creatorHeart && (
-            <div style={{ position: "relative", margin: "0 20px" }}>
+            <div style={{ position: "relative", margin: "0 20px", zIndex: 99 }}>
               <Image
                 src={videoDetails?.author?.avatar[0]?.url}
                 w={"20px"}

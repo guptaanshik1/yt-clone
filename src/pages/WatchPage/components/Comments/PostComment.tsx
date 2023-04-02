@@ -1,15 +1,28 @@
 import { Button, Flex, Input } from "@chakra-ui/react";
+import EmojiPicker, { Theme } from "emoji-picker-react";
 import React from "react";
 import { GoSmiley } from "react-icons/go";
 import { IoPersonCircleSharp } from "react-icons/io5";
+import useGetColorMode from "../../../../hooks/useGetColorMode";
 
 const PostComment = () => {
+  const { isDark } = useGetColorMode();
   const [commentValue, setCommentValue] = React.useState<string>("");
   const [isCommentInputClicked, setIsCommentInputClicked] =
     React.useState(false);
+  const [isEmojiOpen, setIsEmojiOpen] = React.useState<boolean>(false);
+
   const handleInputClick = () => {
+    setIsEmojiOpen(false);
     setIsCommentInputClicked(true);
   };
+
+  // @ts-ignore
+  const handleEmojiClick = (emojiObject, event) => {
+    setCommentValue((prev) => prev + emojiObject.emoji);
+  };
+
+  const theme = {};
 
   return (
     <Flex mt={"10px"} flexDir={"column"}>
@@ -19,7 +32,7 @@ const PostComment = () => {
           width={"100%"}
           placeholder={"Add a comment..."}
           border={"none"}
-          value={commentValue}
+          value={`${commentValue}`}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setCommentValue(e.target.value)
           }
@@ -37,8 +50,26 @@ const PostComment = () => {
 
       {isCommentInputClicked && (
         <Flex m={"10px"} justifyContent={"space-between"} alignItems={"center"}>
-          <Flex ml={"28px"} cursor={"pointer"}>
-            <GoSmiley size={"20px"} />
+          <Flex ml={"28px"} cursor={"pointer"} position={"relative"}>
+            <GoSmiley
+              size={"20px"}
+              onClick={() => setIsEmojiOpen(!isEmojiOpen)}
+            />
+            {isEmojiOpen && (
+              <div
+                style={{
+                  position: "absolute",
+                  zIndex: 100,
+                  marginLeft: "30px",
+                }}
+              >
+                <EmojiPicker
+                  autoFocusSearch
+                  theme={isDark ? Theme.DARK : Theme.LIGHT}
+                  onEmojiClick={handleEmojiClick}
+                />
+              </div>
+            )}
           </Flex>
           <Flex>
             <Button
