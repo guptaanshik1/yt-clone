@@ -6,6 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import data from "../../mocks/videoDetailsById.json";
 import relatedContent from "../../mocks/videoRelatedContent.json";
 import comments from "../../mocks/comments.json";
+import replies from "../../mocks/repliesForComments.json";
 import useGetRelatedContent from "./hooks/useGetRelatedContent";
 import useGetComments from "./hooks/useGetComments";
 
@@ -22,6 +23,7 @@ export default function WatchPageContainer() {
   //   videoId as string
   // );
 
+  // const repliesData = commentsData?.replies["0"];
   const [isShowFullDesc, setIsShowFullDesc] = React.useState(false);
   const { totalCommentsCount, comments: allComments } = comments;
 
@@ -30,7 +32,8 @@ export default function WatchPageContainer() {
       // @ts-ignore
       value={{
         // videoDetails,
-        // isVideoDetailsLoading
+        // isVideoDetailsLoading,
+        // repliesData,
         videoDetails: data,
         relatedContent,
         videoId,
@@ -38,6 +41,7 @@ export default function WatchPageContainer() {
         setIsShowFullDesc,
         totalCommentsCount,
         comments: allComments,
+        replies,
       }}
     >
       <WatchPageView />
