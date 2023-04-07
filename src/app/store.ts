@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import menuSlice from "../features/menuSlice";
+import replySlice from "../features/replySlice";
 import { searchSlice } from "../features/searchSlice";
 import sidebarSlice from "../features/sidebarSlice";
 
@@ -8,6 +9,7 @@ const store = configureStore({
     sidebar: sidebarSlice,
     search: searchSlice.reducer,
     menu: menuSlice,
+    reply: replySlice,
   },
 });
 
