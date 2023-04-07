@@ -2,7 +2,9 @@ import { Flex, Text } from "@chakra-ui/react";
 import React from "react";
 
 interface IProps {
-  options: string[];
+  options: {
+    filters: string[];
+  };
 }
 
 const FilterOptions = ({ options }: IProps) => {
@@ -16,16 +18,17 @@ const FilterOptions = ({ options }: IProps) => {
       w={"100%"}
       flexDir={"column"}
     >
-      {options?.map((option) => {
+      {options?.filters?.map((option) => {
         return (
-          <Flex key={option} p={"10px 0"}>
+          <Flex key={option?.filter} p={"10px 0"}>
             <Text
               color={"#5f6060"}
               fontSize={"14px"}
               lineHeight={"16px"}
               cursor={"pointer"}
+              fontWeight={option?.selected ? 700 : 400}
             >
-              {option}
+              {option?.label}
             </Text>
           </Flex>
         );
