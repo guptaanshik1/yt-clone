@@ -32,7 +32,7 @@ const Comment = ({ comment }: IProps) => {
   });
   const dispatch = useAppDispatch();
   const selectedCommentIds = useAppSelector((state) => state.reply.commentIds);
-  
+
   const handleLikeDislike = (field: keyof typeof toggleLikeDislike) => {
     setToggleLikeDislike((prev) => {
       if (field == "liked" && prev.disliked) {
@@ -57,11 +57,12 @@ const Comment = ({ comment }: IProps) => {
 
   return (
     <Flex mb={"20px"}>
-      <Flex w={"auto"} h={"60%"} mr={"10px"}>
+      <Flex w={"60px"} mr={"10px"}>
         <Image
           src={comment?.author?.avatar[0]?.url}
           objectFit={"cover"}
           rounded={"full"}
+          h={"50px"}
         />
       </Flex>
       <Flex flexDir={"column"} w={"100%"}>
@@ -160,7 +161,7 @@ const Comment = ({ comment }: IProps) => {
           </Text>
         </Flex>
         {showReplyPost && selectedCommentIds.includes(comment?.commentId) && (
-          <PostReply />
+          <PostReply currentlySelectedCommentId={comment?.commentId} />
         )}
       </Flex>
     </Flex>

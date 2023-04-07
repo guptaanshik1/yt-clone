@@ -16,8 +16,11 @@ const replySlice = createSlice({
     setCommentIds: (state, action: PayloadAction<string>) => {
       state.commentIds = [...state.commentIds, action.payload];
     },
+    removeCommentId: (state, action: PayloadAction<string>) => {
+      state.commentIds = state.commentIds.filter((id) => id !== action.payload);
+    },
   },
 });
 
-export const { setCommentIds } = replySlice.actions;
+export const { setCommentIds, removeCommentId } = replySlice.actions;
 export default replySlice.reducer;
