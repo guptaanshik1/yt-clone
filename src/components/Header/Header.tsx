@@ -10,7 +10,7 @@ import UserHeader from "./UserHeader";
 
 const Header = () => {
   const { isSmallScreen } = useScreenSize();
-  const {colorMode} = useGetColorMode()
+  const { colorMode } = useGetColorMode();
   const searchQuery = useAppSelector((state) => getSearchText(state));
 
   return (
@@ -23,6 +23,7 @@ const Header = () => {
       alignItems={"center"}
       position={"sticky"}
       top={0}
+      zIndex={100}
       backgroundColor={colorMode == "dark" ? "rgb(26 32 44)" : "#FFFFFF"}
     >
       <Flex
