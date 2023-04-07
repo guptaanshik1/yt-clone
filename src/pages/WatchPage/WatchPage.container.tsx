@@ -25,6 +25,7 @@ export default function WatchPageContainer() {
 
   // const repliesData = commentsData?.replies["0"];
   const [isShowFullDesc, setIsShowFullDesc] = React.useState(false);
+  const [showReplyPost, setShowReplyPost] = React.useState(false);
   const { totalCommentsCount, comments: allComments } = comments;
 
   return (
@@ -42,6 +43,8 @@ export default function WatchPageContainer() {
         totalCommentsCount,
         comments: allComments,
         replies,
+        showReplyPost,
+        setShowReplyPost,
       }}
     >
       <WatchPageView />

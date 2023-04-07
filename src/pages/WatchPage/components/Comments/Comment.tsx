@@ -12,13 +12,17 @@ import {
 import { useWatchPageContext } from "../../utils/context";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import { formatViewCount } from "../../../../utils/viewCountFormatter";
+import PostReply from "./PostReply";
+import { setCommentIds } from "../../../../features/replySlice";
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 
 interface IProps {
   comment: Object;
 }
 
 const Comment = ({ comment }: IProps) => {
-  const { videoDetails } = useWatchPageContext();
+  const { videoDetails, showReplyPost, setShowReplyPost } =
+    useWatchPageContext();
   const [toggleLikeDislike, setToggleLikeDislike] = React.useState<{
     liked: boolean;
     disliked: boolean;
@@ -26,7 +30,9 @@ const Comment = ({ comment }: IProps) => {
     liked: false,
     disliked: false,
   });
-
+  const dispatch = useAppDispatch();
+  const selectedCommentIds = useAppSelector((state) => state.reply.commentIds);
+  
   const handleLikeDislike = (field: keyof typeof toggleLikeDislike) => {
     setToggleLikeDislike((prev) => {
       if (field == "liked" && prev.disliked) {
@@ -140,10 +146,22 @@ const Comment = ({ comment }: IProps) => {
               />
             </div>
           )}
-          <Text fontWeight={700} cursor={"pointer"} mx={"20px"}>
+          <Text
+            fontWeight={700}
+            cursor={"pointer"}
+            mx={"20px"}
+            onClick={() => {
+              dispatch(setCommentIds(comment?.commentId));
+              // @ts-ignore
+              setShowReplyPost(true);
+            }}
+          >
             Reply
           </Text>
         </Flex>
+        {showReplyPost && selectedCommentIds.includes(comment?.commentId) && (
+          <PostReply />
+        )}
       </Flex>
     </Flex>
   );
