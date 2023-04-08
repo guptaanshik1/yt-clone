@@ -13,8 +13,10 @@ import { VERIFIED_CHANNEL } from "../../../constants/homePageConstants";
 import { formatDuration } from "../../../utils/formatDuration";
 import { formatViewCount } from "../../../utils/viewCountFormatter";
 import ThumbnailPlayer from "../../../components/ThumbnailPlayer";
+import { Link } from "react-router-dom";
 
 const SearchCard = ({ ...video }) => {
+  console.log("video:", video?.author?.channelId);
   const [isMouseOverVideo, setIsMouseOverVideo] = React.useState(false);
   const [isThumbnailMoving, setIsThumbnailMoving] = React.useState(false);
 
@@ -104,26 +106,28 @@ const SearchCard = ({ ...video }) => {
               )}
             </UnorderedList>
           </Flex>
-          <Flex
-            alignItems={"center"}
-            justifyContent={"flex-start"}
-            gap={"10px"}
-            mt={"10px"}
-          >
-            <Box w={"40px"}>
-              <Image rounded={"full"} src={video?.author?.avatar[0]?.url} />
-            </Box>
-            <Flex>
-              <Text fontSize={"12px"} mr={"8px"}>
-                {video?.author?.title}
-              </Text>
-              {video?.author?.badges[0]?.type == VERIFIED_CHANNEL ? (
-                <chakra.span mt={"3px"}>
-                  <GoVerified size={"12px"} />
-                </chakra.span>
-              ) : null}
+          <Link to={`/${video?.author?.channelId}`}>
+            <Flex
+              alignItems={"center"}
+              justifyContent={"flex-start"}
+              gap={"10px"}
+              mt={"10px"}
+            >
+              <Box w={"40px"}>
+                <Image rounded={"full"} src={video?.author?.avatar[0]?.url} />
+              </Box>
+              <Flex>
+                <Text fontSize={"12px"} mr={"8px"}>
+                  {video?.author?.title}
+                </Text>
+                {video?.author?.badges[0]?.type == VERIFIED_CHANNEL ? (
+                  <chakra.span mt={"3px"}>
+                    <GoVerified size={"12px"} />
+                  </chakra.span>
+                ) : null}
+              </Flex>
             </Flex>
-          </Flex>
+          </Link>
           <Flex mt={"10px"}>
             <Text fontSize={"10px"}>{video?.descriptionSnippet}</Text>
           </Flex>
