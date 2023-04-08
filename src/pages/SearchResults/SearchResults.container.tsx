@@ -9,14 +9,20 @@ import data from "../../mocks/searchResults.json";
 export default function SearchResultsContainer() {
   const searchQuery = useAppSelector((state) => getResultsFor(state));
   const [showFilters, setShowFilters] = React.useState(false);
-  // const { data: searchResults, isLoading: isSearchResultsLoading } =
+  // const { data: searchResults, isLoading: isSearchResultsLoading, refetch: refetchSearchResults } =
   //   useGetSearchVideos(searchQuery);
   const { filterGroups, contents } = data;
 
   return (
     <SearchResultsContext.Provider
       // @ts-ignore
-      value={{ filterGroups, contents, showFilters, setShowFilters }}
+      value={{
+        // refetchSearchResults,
+        filterGroups,
+        contents,
+        showFilters,
+        setShowFilters,
+      }}
     >
       <SearchResultsView />
     </SearchResultsContext.Provider>
