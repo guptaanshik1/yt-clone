@@ -1,5 +1,6 @@
 import { Flex, Text } from "@chakra-ui/react";
 import React from "react";
+import { useSearchResultsContext } from "../../utils/context";
 
 interface IProps {
   options: {
@@ -8,6 +9,15 @@ interface IProps {
 }
 
 const FilterOptions = ({ options }: IProps) => {
+  const { refetchSearchResults } = useSearchResultsContext();
+  const [selectedFilter, setSelectedFilter] = React.useState("");
+
+  const handleFilterClick = (label: string) => {
+    setSelectedFilter(label);
+    // @ts-ignore
+    // refetchSearchResults({ cursor: selectedFilter });
+  };
+
   return (
     <Flex
       p={"4px"}
@@ -20,7 +30,11 @@ const FilterOptions = ({ options }: IProps) => {
     >
       {options?.filters?.map((option) => {
         return (
-          <Flex key={option?.filter} p={"10px 0"}>
+          <Flex
+            key={option?.label}
+            p={"10px 0"}
+            onClick={() => handleFilterClick(option?.label)}
+          >
             <Text
               color={"#5f6060"}
               fontSize={"14px"}
