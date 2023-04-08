@@ -1,0 +1,190 @@
+{
+  "artistBio": "Initially modeled as a traditional Latin balladeer, Luis Fonsi enjoyed incredible success as such, but it hardly sums up all of what he does musically. Fonsi is a chart-topping, multi-platinum-selling and multiple award-winning recording artist and songwriter. Since the release of his 1998 debut, 'Comenzaré', each of his albums and singles has landed on the charts in an unbroken string. The music video for his massive hit \"Despacito\" has racked up more than 7 billion views on YouTube alone; the song topped nearly every Latin chart and became the most viewed video in the world. \nHis success won't stop as he gears up to release more music this year.",
+  "avatar": [
+    {
+      "height": 48,
+      "url": "https://yt3.googleusercontent.com/8Lwf4LCR2VmxD2JKiozRu7Lo2jGdnhRs42NawHmMN_xJ8TdW-30e3J9DhumEksivp1Esog4A=s48-c-k-c0x00ffffff-no-rj",
+      "width": 48
+    },
+    {
+      "height": 88,
+      "url": "https://yt3.googleusercontent.com/8Lwf4LCR2VmxD2JKiozRu7Lo2jGdnhRs42NawHmMN_xJ8TdW-30e3J9DhumEksivp1Esog4A=s88-c-k-c0x00ffffff-no-rj",
+      "width": 88
+    },
+    {
+      "height": 176,
+      "url": "https://yt3.googleusercontent.com/8Lwf4LCR2VmxD2JKiozRu7Lo2jGdnhRs42NawHmMN_xJ8TdW-30e3J9DhumEksivp1Esog4A=s176-c-k-c0x00ffffff-no-rj",
+      "width": 176
+    }
+  ],
+  "badges": [
+    {
+      "text": "Official Artist Channel",
+      "type": "OFFICIAL_ARTIST_CHANNEL"
+    }
+  ],
+  "banner": {
+    "desktop": [
+      {
+        "height": 175,
+        "url": "https://yt3.googleusercontent.com/2zQulAMELGBzAjsmW8XOq6FUrNHwwKJN_TIkz-sbQBQ5GsQzHyqjH4BmNzA-F0CMfR3GCVJ7=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+        "width": 1060
+      },
+      {
+        "height": 188,
+        "url": "https://yt3.googleusercontent.com/2zQulAMELGBzAjsmW8XOq6FUrNHwwKJN_TIkz-sbQBQ5GsQzHyqjH4BmNzA-F0CMfR3GCVJ7=w1138-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+        "width": 1138
+      },
+      {
+        "height": 283,
+        "url": "https://yt3.googleusercontent.com/2zQulAMELGBzAjsmW8XOq6FUrNHwwKJN_TIkz-sbQBQ5GsQzHyqjH4BmNzA-F0CMfR3GCVJ7=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+        "width": 1707
+      },
+      {
+        "height": 351,
+        "url": "https://yt3.googleusercontent.com/2zQulAMELGBzAjsmW8XOq6FUrNHwwKJN_TIkz-sbQBQ5GsQzHyqjH4BmNzA-F0CMfR3GCVJ7=w2120-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+        "width": 2120
+      },
+      {
+        "height": 377,
+        "url": "https://yt3.googleusercontent.com/2zQulAMELGBzAjsmW8XOq6FUrNHwwKJN_TIkz-sbQBQ5GsQzHyqjH4BmNzA-F0CMfR3GCVJ7=w2276-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+        "width": 2276
+      },
+      {
+        "height": 424,
+        "url": "https://yt3.googleusercontent.com/2zQulAMELGBzAjsmW8XOq6FUrNHwwKJN_TIkz-sbQBQ5GsQzHyqjH4BmNzA-F0CMfR3GCVJ7=w2560-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+        "width": 2560
+      }
+    ],
+    "mobile": [
+      {
+        "height": 88,
+        "url": "https://yt3.googleusercontent.com/2zQulAMELGBzAjsmW8XOq6FUrNHwwKJN_TIkz-sbQBQ5GsQzHyqjH4BmNzA-F0CMfR3GCVJ7=w320-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+        "width": 320
+      },
+      {
+        "height": 175,
+        "url": "https://yt3.googleusercontent.com/2zQulAMELGBzAjsmW8XOq6FUrNHwwKJN_TIkz-sbQBQ5GsQzHyqjH4BmNzA-F0CMfR3GCVJ7=w640-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+        "width": 640
+      },
+      {
+        "height": 263,
+        "url": "https://yt3.googleusercontent.com/2zQulAMELGBzAjsmW8XOq6FUrNHwwKJN_TIkz-sbQBQ5GsQzHyqjH4BmNzA-F0CMfR3GCVJ7=w960-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+        "width": 960
+      },
+      {
+        "height": 351,
+        "url": "https://yt3.googleusercontent.com/2zQulAMELGBzAjsmW8XOq6FUrNHwwKJN_TIkz-sbQBQ5GsQzHyqjH4BmNzA-F0CMfR3GCVJ7=w1280-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+        "width": 1280
+      },
+      {
+        "height": 395,
+        "url": "https://yt3.googleusercontent.com/2zQulAMELGBzAjsmW8XOq6FUrNHwwKJN_TIkz-sbQBQ5GsQzHyqjH4BmNzA-F0CMfR3GCVJ7=w1440-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+        "width": 1440
+      }
+    ],
+    "tv": [
+      {
+        "height": 180,
+        "url": "https://yt3.googleusercontent.com/2zQulAMELGBzAjsmW8XOq6FUrNHwwKJN_TIkz-sbQBQ5GsQzHyqjH4BmNzA-F0CMfR3GCVJ7=w320-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+        "width": 320
+      },
+      {
+        "height": 480,
+        "url": "https://yt3.googleusercontent.com/2zQulAMELGBzAjsmW8XOq6FUrNHwwKJN_TIkz-sbQBQ5GsQzHyqjH4BmNzA-F0CMfR3GCVJ7=w854-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+        "width": 854
+      },
+      {
+        "height": 720,
+        "url": "https://yt3.googleusercontent.com/2zQulAMELGBzAjsmW8XOq6FUrNHwwKJN_TIkz-sbQBQ5GsQzHyqjH4BmNzA-F0CMfR3GCVJ7=w1280-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+        "width": 1280
+      },
+      {
+        "height": 1080,
+        "url": "https://yt3.googleusercontent.com/2zQulAMELGBzAjsmW8XOq6FUrNHwwKJN_TIkz-sbQBQ5GsQzHyqjH4BmNzA-F0CMfR3GCVJ7=w1920-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+        "width": 1920
+      },
+      {
+        "height": 1192,
+        "url": "https://yt3.googleusercontent.com/2zQulAMELGBzAjsmW8XOq6FUrNHwwKJN_TIkz-sbQBQ5GsQzHyqjH4BmNzA-F0CMfR3GCVJ7=w2120-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+        "width": 2120
+      }
+    ]
+  },
+  "canonicalBaseUrl": "/@LuisFonsiOficial",
+  "channelId": "UCxoq-PAQeAdk_zyg8YS0JqA",
+  "country": "United States",
+  "description": "Hola amigos! Soy Luis Fonsi y este es mi canal de YouTube en donde compartiré con ustedes algunas de mis presentaciones en vivo, backstages, anécdotas, entre otras cosas. Suscríbanse para recibir todas las novedades!\n\nSaludos!\n\nAdministrador del Canal: Farolatino y @torrecilla90",
+  "hasBusinessEmail": false,
+  "joinedDate": "2014-02-25",
+  "joinedDateText": "Joined Feb 25, 2014",
+  "keywords": [
+    "Luis Alfonso Rodríguez López-Cepero",
+    "San Juan",
+    "Puerto Rico",
+    "15",
+    "abril",
+    "1978",
+    "Luis Fonsi",
+    "cantante",
+    "compositor",
+    "actor",
+    "músico",
+    "productor",
+    "puertorriqueño",
+    "paso a paso",
+    "palabras del silencio",
+    "live",
+    "vivo",
+    "recital",
+    "show",
+    "concierto",
+    "guitarra",
+    "voz",
+    "álbum",
+    "Despacito",
+    "Échame la culpa",
+    "Fonsi y Demi Lovato"
+  ],
+  "links": [
+    {
+      "icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcTPq-htga6bDPmVAynILOsLYi6EIWpfIurnvswvfemUVtc0D9qMnoaShA-8fhlghF8TMBJAfPzoSy7WzoRl-n04qOMQowjcHljGMxCOoQDBybo9yA4f",
+      "targetUrl": "https://luisfonsi.lnk.to/LDG!YTD",
+      "title": "Ley De Gravedad -ALBUM"
+    },
+    {
+      "icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcSxUwGjsJZApoUKonOfNzxpFkEMyf29jwvspkLH1CA-JP5Nx06tcApyuGcjdsPZWzHuoyTRot1jS2gOtE_pzWKSSaJg0t0MtrRw6u7ZcItl78fGxuhb",
+      "targetUrl": "https://www.facebook.com/luisfonsi",
+      "title": "Facebook"
+    },
+    {
+      "icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcSfLSwm05yS0BK4Kb28e-NTcQAsNLQfDCkRW2BwGzQ_4QLgT3HvRwy5O9kLRnUU-QhzvJantOSGhq8NOQp7EHd_WEvUNR6WW1Pp0THXuSRzNiJgToeoCA",
+      "targetUrl": "https://www.instagram.com/luisfonsi/",
+      "title": "Instagram"
+    },
+    {
+      "icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcTil9qRPKod7VzAZX5hcljGOgNm_7OH9ctUPIWDk6tsvCGucVCNpU42I4k2ABNB9C3Dcv2DTXTaPLHtE7s4M5O0dzX4RrA-amgItDD5R5YT_fInOg",
+      "targetUrl": "https://www.tiktok.com/@luisfonsi",
+      "title": "TikTok"
+    },
+    {
+      "icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcSee50GuO8CbSK4ZXT96VUgD4bnAh1cYfb1W8Dj6fW8jLn47MFpf3gWP3935vsMYMVpcbV6o8IlE3MRNvjswiTwCFs29mafAIZFR4lJSYPDVvTqRHJbDw",
+      "targetUrl": "https://www.luisfonsi.com/",
+      "title": "Sitio oficial"
+    },
+    {
+      "icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcTCl87OfLKVJ9rK8xDL2fO43Nn-qwO3MZqhD6Va_y_Dj4NQN5vi_7wfFsqVPVk5OJarybTLaqbvqdn3Oj1nmlMBa_srPR9cF0lTX47Loj-ftw",
+      "targetUrl": "https://twitter.com/luisfonsi",
+      "title": "Twitter"
+    }
+  ],
+  "stats": {
+    "subscribers": 31300000,
+    "subscribersText": "31.3M subscribers",
+    "videos": 152,
+    "videosText": "152 videos",
+    "views": 14958884443
+  },
+  "title": "Luis Fonsi",
+  "username": "@LuisFonsiOficial"
+}

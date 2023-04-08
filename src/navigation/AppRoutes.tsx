@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "../layout/Layout";
+import { Channel } from "../pages/Channel";
 import { FormPage } from "../pages/FormPage";
 import { HomePage } from "../pages/HomePage";
 import { SearchResults } from "../pages/SearchResults";
@@ -13,6 +14,15 @@ const AppRoutes = () => {
         <Route path={"/"} element={<SearchResults />} />
         <Route path={"/watch"} element={<WatchPage />} />
         <Route path={"/forms"} element={<FormPage />} />
+        <Route path={"/:channelName"} element={<Channel />}>
+          <Route path={"featured"} />
+          <Route path={"videos"} />
+          <Route path={"shorts"} />
+          <Route path={"streams"} />
+          <Route path={"playlists"} />
+          <Route path={"channels"} />
+          <Route path={"about"} />
+        </Route>
       </Route>
     </Routes>
   );
