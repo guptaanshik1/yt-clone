@@ -13,12 +13,7 @@ import { formatViewCount } from "../../../../utils/viewCountFormatter";
 
 const ContentCard = ({ ...video }) => {
   return (
-    <Flex
-      w={"100%"}
-      flexDir={"row"}
-      my={"10px"}
-      h={"auto"}
-    >
+    <Flex w={"100%"} flexDir={"row"} my={"10px"} h={"auto"}>
       <Flex w={"100%"}>
         <Image
           w={"1000px"}
