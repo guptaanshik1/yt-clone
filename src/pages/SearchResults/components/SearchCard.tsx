@@ -12,8 +12,34 @@ import { GoVerified } from "react-icons/go";
 import { VERIFIED_CHANNEL } from "../../../constants/homePageConstants";
 import { formatDuration } from "../../../utils/formatDuration";
 import { formatViewCount } from "../../../utils/viewCountFormatter";
+import ThumbnailPlayer from "../../../components/ThumbnailPlayer";
 
 const SearchCard = ({ ...video }) => {
+  const [isMouseOverVideo, setIsMouseOverVideo] = React.useState(false);
+  const [isThumbnailMoving, setIsThumbnailMoving] = React.useState(false);
+
+  const mouseOverThumbnail = () => {
+    setIsMouseOverVideo(true);
+  };
+  const mouseOutThumbnail = () => {
+    setIsMouseOverVideo(false);
+    setIsThumbnailMoving(true);
+  };
+
+  React.useEffect(() => {
+    let timeoutId: number;
+    if (isMouseOverVideo) {
+      timeoutId = setTimeout(() => {
+        setIsThumbnailMoving(true);
+      }, 2000);
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+      setIsThumbnailMoving(false);
+    };
+  }, [isMouseOverVideo]);
+
   return (
     <>
       <Flex
@@ -23,24 +49,37 @@ const SearchCard = ({ ...video }) => {
         maxH={"200px"}
         gap={"14px"}
       >
-        <Flex w={"35%"} position={"relative"}>
-          <Image
-            src={video?.thumbnails[0]?.url}
-            objectFit={"cover"}
-            borderRadius={"8px"}
-          />
-          <Flex
-            position={"absolute"}
-            bottom={1}
-            right={1}
-            fontSize={"14px"}
-            backgroundColor={"#000000"}
-            color={"#FFFFFF"}
-            borderRadius={"4px"}
-            p={"2px"}
-          >
-            {formatDuration(video?.lengthSeconds)}
-          </Flex>
+        <Flex
+          w={"35%"}
+          position={"relative"}
+          onMouseOver={mouseOverThumbnail}
+          onMouseOut={mouseOutThumbnail}
+        >
+          {!isThumbnailMoving ? (
+            <>
+              <Image
+                src={video?.thumbnails[0]?.url}
+                objectFit={"cover"}
+                borderRadius={"8px"}
+              />
+              <Flex
+                position={"absolute"}
+                bottom={1}
+                right={1}
+                fontSize={"14px"}
+                backgroundColor={"#000000"}
+                color={"#FFFFFF"}
+                borderRadius={"4px"}
+                p={"2px"}
+              >
+                {isMouseOverVideo
+                  ? `Keep hovering to play`
+                  : formatDuration(video?.lengthSeconds)}
+              </Flex>
+            </>
+          ) : (
+            <ThumbnailPlayer thumbnailUrl={video?.movingThumbnails[0]} />
+          )}
         </Flex>
         <Flex w={"100%"} flexDir={"column"}>
           <Flex
