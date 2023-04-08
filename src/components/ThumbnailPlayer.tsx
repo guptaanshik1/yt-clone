@@ -1,5 +1,5 @@
+import { Image } from "@chakra-ui/react";
 import React from "react";
-import ReactPlayer from "react-player";
 
 interface IProps {
   thumbnailUrl: {
@@ -8,10 +8,9 @@ interface IProps {
 }
 
 const ThumbnailPlayer = ({ thumbnailUrl }: IProps) => {
-  console.log("moving thumbnails:", thumbnailUrl?.url);
   return (
     <>
-      <ReactPlayer width={"35%"} height={""} url={thumbnailUrl?.url} />
+      <Image src={thumbnailUrl?.url} w={"100%"} />
     </>
   );
 };
