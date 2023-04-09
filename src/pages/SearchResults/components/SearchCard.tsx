@@ -16,7 +16,6 @@ import ThumbnailPlayer from "../../../components/ThumbnailPlayer";
 import { Link } from "react-router-dom";
 
 const SearchCard = ({ ...video }) => {
-  console.log("video:", video?.author?.channelId);
   const [isMouseOverVideo, setIsMouseOverVideo] = React.useState(false);
   const [isThumbnailMoving, setIsThumbnailMoving] = React.useState(false);
 
