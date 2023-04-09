@@ -6,3 +6,10 @@ export const limitTitleChars = (title: string): string => {
     omission: "...",
   });
 };
+
+export const limitDescriptionChars = (title: string): string => {
+  return truncate(title, {
+    length: 80,
+    omission: "...",
+  });
+};
