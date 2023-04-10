@@ -3,7 +3,7 @@ export const tabsList = [
   "Videos",
   "Shorts",
   "Live",
-  "Playlist",
+  "Playlists",
   "Channels",
   "About",
 ];
