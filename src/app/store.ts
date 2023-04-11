@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import channelSlice from "../features/channelSlice";
 import menuSlice from "../features/menuSlice";
 import replySlice from "../features/replySlice";
 import { searchSlice } from "../features/searchSlice";
@@ -10,6 +11,7 @@ const store = configureStore({
     search: searchSlice.reducer,
     menu: menuSlice,
     reply: replySlice,
+    channel: channelSlice,
   },
 });
 

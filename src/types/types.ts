@@ -5,3 +5,12 @@ export interface IconProps {
   color?: string;
   iconName: string;
 }
+
+export interface IPlaylistsFilters {
+  collections: [
+    {
+      filter: string;
+      title: string;
+    }
+  ];
+}
