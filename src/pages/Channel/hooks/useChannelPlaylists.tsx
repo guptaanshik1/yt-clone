@@ -7,9 +7,9 @@ interface IOptions {
   headers: headersType;
 }
 
-const getDetails = async (channelId: string) => {
-  const endpoint = `${BASE_URL}/channel/details/`;
-  const params = { id: channelId, hl: "en", gl: "US" };
+const getPlaylists = async (channelId: string, filter?: string) => {
+  const endpoint = `${BASE_URL}/channel/playlists/`;
+  const params = { id: channelId, filter, hl: "en", gl: "US" };
   const options: IOptions = {
     params,
     headers: HEADERS,
@@ -18,11 +18,15 @@ const getDetails = async (channelId: string) => {
   return data;
 };
 
-export default function useChannelDetails(channelId: string) {
-  const { data, isLoading } = useQuery(
-    "channel/details",
-    () => getDetails(channelId),
+export default function useChannelPlaylists(
+  channelId: string,
+  filter?: string
+) {
+  const { data, isLoading, refetch } = useQuery(
+    ["channel/playlists", channelId, filter],
+    () => getPlaylists(channelId, filter),
     {
+      enabled: false,
       onError(err) {
         console.log(err);
       },
@@ -32,5 +36,6 @@ export default function useChannelDetails(channelId: string) {
   return {
     data,
     isLoading,
+    refetch,
   };
 }
