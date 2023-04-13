@@ -8,7 +8,7 @@ export type headersType = {
 };
 
 export const HEADERS: headersType = {
-  "X-RapidAPI-Key": "9a7eb0f429msh76384fbd0ba4587p1d0525jsn739c6d7eb2d9",
+  "X-RapidAPI-Key": "2804a250edmsha71500eca560b4cp124987jsn1fc1cb45c710",
   "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
 };
 

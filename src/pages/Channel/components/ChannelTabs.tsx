@@ -3,7 +3,6 @@ import {
   Tab,
   TabIndicator,
   TabList,
-  TabPanel,
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
@@ -16,8 +15,8 @@ import HomeTab from "./HomeTab";
 import LiveTab from "./LiveTab";
 import PlaylistsTabs from "./PlaylistsTabs";
 import ShortsTab from "./ShortsTab";
-import TabChannel from "./TabChannel";
 import VideosTab from "./VideosTab";
+import { ChannelChannels } from "../ChannelChannels";
 
 const ChannelTabs = () => {
   const [currentTabRoute, setCurrentTabRoute] = React.useState(
@@ -35,7 +34,7 @@ const ChannelTabs = () => {
     [routeConstants.Shorts]: <ShortsTab />,
     [routeConstants.Live]: <LiveTab />,
     [routeConstants.Playlists]: <PlaylistsTabs />,
-    [routeConstants.Channels]: <TabChannel />,
+    [routeConstants.Channels]: <ChannelChannels />,
     [routeConstants.About]: <AboutTab />,
   };
 
