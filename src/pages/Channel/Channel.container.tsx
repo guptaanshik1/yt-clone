@@ -5,9 +5,11 @@ import useChannelDetails from "./hooks/useChannelDetails";
 import { ChannelContext } from "./utils/context";
 import channelDetails from "../../mocks/channelDetails.json";
 import playlistsData from "../../mocks/playlistsData.json";
+import channelVideosLatest from "../../mocks/channelLatestVideos.json";
 import useChannelPlaylists from "./hooks/useChannelPlaylists";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setChannelId } from "../../features/channelSlice";
+import useChannelVideos from "./hooks/useChannelVideos";
 
 export default function ChannelContainer() {
   const { channelName } = useParams<{ channelName: string }>();
@@ -31,6 +33,23 @@ export default function ChannelContainer() {
   //     queryKey: ["channel/playlists", storeChannelName],
   //   });
   // }, []);
+
+  // const {
+  //   data: channelVideosLatest,
+  //   isLoading: isChannelVideosLoading,
+  //   refetch: refetchChannelVideos,
+  // } = useChannelVideos(storeChannelName);
+
+  // React.useEffect(() => {
+  //   if (pathname == "/videos") {
+  //     refetchChannelVideos({
+  //       queryKey: ["channel/channels-videos", storeChannelName],
+  //     });
+  //   }
+  // }, [pathname]);
+
+  console.log({ channelVideosLatest });
+
   return (
     <ChannelContext.Provider
       // @ts-ignore
@@ -42,6 +61,8 @@ export default function ChannelContainer() {
         // playlistsData,
         // isPlaylistsDataLoading,
         playlistsData,
+        channelVideosLatest,
+        // isChannelVideosLoading
         // channelChannelsData,
         // isChannelChannelsDataLoading,
         // channelChannelsRefetch,
