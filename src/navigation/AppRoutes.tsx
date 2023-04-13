@@ -6,12 +6,12 @@ import HomeTab from "../pages/Channel/components/HomeTab";
 import LiveTab from "../pages/Channel/components/LiveTab";
 import PlaylistsTabs from "../pages/Channel/components/PlaylistsTabs";
 import ShortsTab from "../pages/Channel/components/ShortsTab";
-import TabChannel from "../pages/Channel/components/TabChannel";
 import VideosTab from "../pages/Channel/components/VideosTab";
 import { FormPage } from "../pages/FormPage";
 import { HomePage } from "../pages/HomePage";
 import { SearchResults } from "../pages/SearchResults";
 import { WatchPage } from "../pages/WatchPage";
+import { ChannelChannels } from "../pages/Channel/ChannelChannels";
 
 const AppRoutes = () => {
   return (
@@ -27,7 +27,7 @@ const AppRoutes = () => {
           <Route path={"shorts"} element={<ShortsTab />} />
           <Route path={"streams"} element={<LiveTab />} />
           <Route path={"playlists"} element={<PlaylistsTabs />} />
-          <Route path={"channels"} element={<TabChannel />} />
+          <Route path={"channels"} element={<ChannelChannels />} />
           <Route path={"about"} element={<AboutTab />} />
         </Route>
       </Route>

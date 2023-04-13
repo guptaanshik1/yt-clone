@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import ChannelView from "./Channel.view";
 import useChannelDetails from "./hooks/useChannelDetails";
 import { ChannelContext } from "./utils/context";
@@ -15,25 +15,22 @@ export default function ChannelContainer() {
   // const { data: channelDetails, isLoading: isChannelDetailsLoading } =
   //   useChannelDetails(channelName as string);
   const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
   React.useEffect(() => {
-    console.log("first useEffect");
-    console.log("channelName:", channelName);
     dispatch(setChannelId(channelName as string));
   }, []);
   const storeChannelName = useAppSelector((state) => state.channel.channelName);
   // const {
   //   data: playlistsData,
   //   isLoading: isPlaylistsDataLoading,
-  //   refetch,
-  // } = useChannelPlaylists(storeChannelName as string, selectedFilter);
+  //   refetch: playlistsRefetch,
+  // } = useChannelPlaylists(storeChannelName as string);
 
   // React.useEffect(() => {
-  //   console.log("second useEffect");
-  //   refetch({
-  //     queryKey: ["channel/playlists", storeChannelName, selectedFilter],
+  //   playlistsRefetch({
+  //     queryKey: ["channel/playlists", storeChannelName],
   //   });
-  // }, [selectedFilter]);
-
+  // }, []);
   return (
     <ChannelContext.Provider
       // @ts-ignore
@@ -45,6 +42,9 @@ export default function ChannelContainer() {
         // playlistsData,
         // isPlaylistsDataLoading,
         playlistsData,
+        // channelChannelsData,
+        // isChannelChannelsDataLoading,
+        // channelChannelsRefetch,
       }}
     >
       <ChannelView />
