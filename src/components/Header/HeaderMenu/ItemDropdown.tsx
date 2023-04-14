@@ -47,7 +47,7 @@ const ItemDropdown = ({ step, setStep }: IProps) => {
   };
 
   return (
-    <MenuList w={"300px"}>
+    <MenuList w={"300px"} maxH={"90vh"} overflowY={"scroll"}>
       <Flex mb={"1em"} alignItems={"flex-start"} mx={"0.4em"}>
         <BsArrowLeft size={"20px"} onClick={() => setStep(1)} />
         <Heading ml={"1em"} size={"md"}>

@@ -14,10 +14,12 @@ import { formatDuration } from "../../../utils/formatDuration";
 import { formatViewCount } from "../../../utils/viewCountFormatter";
 import ThumbnailPlayer from "../../../components/ThumbnailPlayer";
 import { Link } from "react-router-dom";
+import { RxDotsVertical } from "react-icons/rx";
 
 const SearchCard = ({ ...video }) => {
   const [isMouseOverVideo, setIsMouseOverVideo] = React.useState(false);
   const [isThumbnailMoving, setIsThumbnailMoving] = React.useState(false);
+  const [showMenuIcon, setShowMenuIcon] = React.useState(false);
 
   const mouseOverThumbnail = () => {
     setIsMouseOverVideo(true);
@@ -79,19 +81,29 @@ const SearchCard = ({ ...video }) => {
               </Flex>
             </>
           ) : (
-            <ThumbnailPlayer thumbnailUrl={video?.movingThumbnails[0]} />
+            <>
+              {video?.movingThumbnails && (
+                <ThumbnailPlayer thumbnailUrl={video?.movingThumbnails[0]} />
+              )}
+            </>
           )}
         </Flex>
-        <Flex w={"100%"} flexDir={"column"}>
+        <Flex
+          w={"100%"}
+          flexDir={"column"}
+          onMouseOver={() => setShowMenuIcon(true)}
+          onMouseOut={() => setShowMenuIcon(false)}
+        >
           <Flex
             w={"100%"}
             flexWrap={"wrap"}
             alignItems={"center"}
-            justifyContent={"flex-start"}
+            justifyContent={"space-between"}
           >
             <Text fontWeight={400} fontSize={"18px"}>
               {video?.title}
             </Text>
+            {showMenuIcon && <RxDotsVertical size={"24px"} color={"grey"} />}
           </Flex>
           <Flex>
             <UnorderedList display={"flex"} fontSize={"10px"} m={0}>
