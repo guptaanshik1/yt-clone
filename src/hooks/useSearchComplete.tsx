@@ -7,19 +7,19 @@ interface IOptions {
   headers: headersType;
 }
 
-const searchComplete = async (q: string) => {
-  const endpoint = `${BASE_URL}/auto-complete`;
-  const params = { hl: "en", gl: "IN" };
+const searchComplete = async (q: string): Promise<string[]> => {
+  const endpoint = `${BASE_URL}/auto-complete/`;
+  const params = { q, hl: "en", gl: "IN" };
   const options: IOptions = {
     params,
     headers: HEADERS,
   };
-  const response = await axios.get(endpoint, options);
-  return response;
+  const { data } = await axios.get(endpoint, options);
+  return data;
 };
 
 export default function useSearchComplete(q: string) {
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, refetch } = useQuery(
     "search/complete",
     () => searchComplete(q),
     {
@@ -32,5 +32,6 @@ export default function useSearchComplete(q: string) {
   return {
     data,
     isLoading,
+    refetch,
   };
 }

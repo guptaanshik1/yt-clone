@@ -29,7 +29,6 @@ const SearchBar = () => {
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
     dispatch(setAllSearchQuery(e.target.value));
-    dispatch(setAllSearchQuery(e.target.value));
   };
 
   return (
