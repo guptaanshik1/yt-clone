@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from "react";
 import { useQuery } from "react-query";
 import { BASE_URL, HEADERS, headersType } from "../../../constants/caller";
 
@@ -9,7 +8,7 @@ interface IOptions {
 }
 
 const getVideos = async (q: string, cursor?: string): Promise<any> => {
-  const endpoint = `${BASE_URL}/search`;
+  const endpoint = `${BASE_URL}/search/`;
   const params = { q, cursor, hl: "en", gl: "IN" };
   const options: IOptions = {
     params,
@@ -25,6 +24,7 @@ export default function useGetSearchVideos(q: string, cursor?: string) {
     ["search/videos", cursor],
     () => getVideos(q, cursor),
     {
+      enabled: !!q,
       onError(err) {
         console.log(err);
       },

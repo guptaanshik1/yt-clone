@@ -1,21 +1,74 @@
 import { Flex, ListItem, Text, UnorderedList } from "@chakra-ui/react";
 import React from "react";
 import { TfiSearch } from "react-icons/tfi";
-import { useAppSelector } from "../app/hooks";
-import { getSearchText } from "../features/searchSlice";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import {
+  getSearchText,
+  setAllSearchQuery,
+  setCacheResults,
+} from "../features/searchSlice";
 import useSearchComplete from "../hooks/useSearchComplete";
-import { searchData } from "../mocks/autoCompleteResults";
+import searchSuggestions from "../mocks/autoCompleteResults.json";
 
 const SearchSuggestions = () => {
   const searchQuery = useAppSelector((state) => getSearchText(state));
-  const { data: searchSuggestions, isLoading: isSearchSuggestionsLoading } =
-    useSearchComplete(searchQuery);
+  const cacheResults = useAppSelector((state) => state.search.cacheResults);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  if (searchData?.length <= 0) return null;
+  const [suggestions, setSuggestions] = React.useState<string[]>([]);
+
+  const {
+    data: searchSuggestions,
+    isLoading: isSearchSuggestionsLoading,
+    refetch,
+  } = useSearchComplete(searchQuery);
+
+  React.useEffect(() => {
+    if (!isSearchSuggestionsLoading) {
+      setSuggestions(searchSuggestions?.results);
+      dispatch(
+        setCacheResults({
+          [searchQuery]: searchSuggestions?.results,
+        })
+      );
+    }
+  }, [isSearchSuggestionsLoading, searchSuggestions]);
+
+  React.useEffect(() => {
+    let timeoutId: number;
+    timeoutId = setTimeout(() => {
+      if (searchQuery !== "") {
+        if (cacheResults[searchQuery]) {
+          setSuggestions(cacheResults[searchQuery]);
+        } else {
+          refetch();
+        }
+      }
+    }, 2000);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [searchQuery]);
+
+  if (searchSuggestions?.results?.length <= 0) return null;
+
   return (
     <UnorderedList>
-      {searchData.map((item) => (
-        <ListItem key={item} listStyleType={"none"} p={"8px"}>
+      {suggestions?.map((item: string) => (
+        <ListItem
+          key={item}
+          listStyleType={"none"}
+          p={"8px"}
+          cursor={"pointer"}
+          onClick={() => {
+            console.log("item clicked:", item);
+            setAllSearchQuery(item);
+            navigate("/results");
+          }}
+        >
           <Flex justifyContent={"flex-start"} alignItems={"center"}>
             <TfiSearch size={"18px"} />
             <Text ml={"20px"} color={"#000000"}>
