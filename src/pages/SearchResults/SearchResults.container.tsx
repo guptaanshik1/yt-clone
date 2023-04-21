@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppSelector } from "../../app/hooks";
-import { getResultsFor, getSearchText } from "../../features/searchSlice";
+import { getSearchText } from "../../features/searchSlice";
 import useGetSearchVideos from "./hooks/useGetSearchVideos";
 import SearchResultsView from "./SearchResults.view";
 import { SearchResultsContext } from "./utils/context";
@@ -11,26 +11,32 @@ export default function SearchResultsContainer() {
   const searchQuery = useAppSelector((state) => getSearchText(state));
   const [showFilters, setShowFilters] = React.useState(false);
 
-  const { filterGroups } = data;
+  // const { filterGroups } = data;
 
   const {
+    mutate: searchResultsMutate,
     data: searchResults,
     isLoading: isSearchResultsLoading,
-    refetch: refetchSearchResults,
-  } = useGetSearchVideos(searchQuery);
+  } = useGetSearchVideos();
 
-  console.log("searchResults:", searchResults?.contents);
-  // console.log("contents:", contents);
+  React.useEffect(() => {
+    searchResultsMutate({ q: searchQuery });
+  }, []);
+
   const contents = searchResults?.contents;
+  const filterGroups = searchResults?.filterGroups;
+
   return (
     <SearchResultsContext.Provider
       // @ts-ignore
       value={{
-        // refetchSearchResults,
         filterGroups,
         contents,
         showFilters,
         setShowFilters,
+        searchResultsMutate,
+        searchQuery,
+        isSearchResultsLoading,
       }}
     >
       <SearchResultsView />

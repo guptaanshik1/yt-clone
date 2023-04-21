@@ -1,10 +1,15 @@
 import axios from "axios";
-import { useQuery } from "react-query";
+import { useMutation } from "react-query";
 import { BASE_URL, HEADERS, headersType } from "../../../constants/caller";
 
 interface IOptions {
   params: Object;
   headers: headersType;
+}
+
+interface IPayload {
+  q: string;
+  cursor?: string;
 }
 
 const getVideos = async (q: string, cursor?: string): Promise<any> => {
@@ -19,20 +24,19 @@ const getVideos = async (q: string, cursor?: string): Promise<any> => {
   return data;
 };
 
-export default function useGetSearchVideos(q: string, cursor?: string) {
-  const { data, isLoading, refetch } = useQuery(
-    ["search/videos", cursor],
-    () => getVideos(q, cursor),
+export default function useGetSearchVideos() {
+  const { mutate, data, isLoading } = useMutation(
+    ["search/videos"],
+    ({ q, cursor }: IPayload) => getVideos(q, cursor),
     {
-      enabled: !!q,
       onError(err) {
         console.log(err);
       },
     }
   );
   return {
+    mutate,
     data,
     isLoading,
-    refetch,
   };
 }

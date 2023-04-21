@@ -5,7 +5,10 @@ import SearchCardsContainer from "./components/SearchCardsContainer";
 import { useSearchResultsContext } from "./utils/context";
 
 export default function SearchResultsView() {
-  const { showFilters, setShowFilters } = useSearchResultsContext();
+  const { showFilters, setShowFilters, isSearchResultsLoading } =
+    useSearchResultsContext();
+
+  if (isSearchResultsLoading) return <></>;
   return (
     <Flex
       flexWrap={"wrap"}
