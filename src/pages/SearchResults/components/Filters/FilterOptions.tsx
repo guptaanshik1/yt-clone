@@ -4,18 +4,32 @@ import { useSearchResultsContext } from "../../utils/context";
 
 interface IProps {
   options: {
-    filters: string[];
+    filters: [
+      {
+        label: string;
+        selected: boolean;
+        cursorSelect: string;
+      }
+    ];
   };
 }
 
 const FilterOptions = ({ options }: IProps) => {
-  const { refetchSearchResults } = useSearchResultsContext();
+  const { searchQuery, searchResultsMutate } = useSearchResultsContext();
   const [selectedFilter, setSelectedFilter] = React.useState("");
 
-  const handleFilterClick = (label: string) => {
-    setSelectedFilter(label);
+  const handleFilterClick = (option: {
+    label: string;
+    cursorSelect: string;
+  }) => {
+    setSelectedFilter(option?.label);
+    console.log({ selectedFilter });
+    console.log({ searchQuery });
     // @ts-ignore
-    // refetchSearchResults({ cursor: selectedFilter });
+    searchResultsMutate({
+      q: searchQuery,
+      cursor: option?.cursorSelect,
+    });
   };
 
   return (
@@ -33,7 +47,7 @@ const FilterOptions = ({ options }: IProps) => {
           <Flex
             key={option?.label}
             p={"10px 0"}
-            onClick={() => handleFilterClick(option?.label)}
+            onClick={() => handleFilterClick(option)}
           >
             <Text
               color={"#5f6060"}
