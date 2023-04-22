@@ -9,11 +9,17 @@ const SearchCardsContainer = () => {
     <>
       {
         // @ts-ignore
-        contents?.map((data) => (
-          <Link key={data?.video?.videoId} to={`/watch?v=${data?.video?.videoId}`}>
-            <SearchCard {...data.video} />
-          </Link>
-        ))
+        contents?.map((data) => {
+          if (data?.type !== "video") return null;
+          return (
+            <Link
+              key={data?.video?.videoId}
+              to={`/watch?v=${data?.video?.videoId}`}
+            >
+              <SearchCard {...data.video} />
+            </Link>
+          );
+        })
       }
     </>
   );

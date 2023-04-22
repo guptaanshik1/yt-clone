@@ -1,16 +1,18 @@
 import React from "react";
 import { useAppSelector } from "../../app/hooks";
-import { getSearchText } from "../../features/searchSlice";
 import useGetSearchVideos from "./hooks/useGetSearchVideos";
 import SearchResultsView from "./SearchResults.view";
 import { SearchResultsContext } from "./utils/context";
 import data from "../../mocks/searchResults.json";
+import { getResultsFor } from "../../features/searchSlice";
 
 export default function SearchResultsContainer() {
   // const searchQuery = useAppSelector((state) => getResultsFor(state));
-  const searchQuery = useAppSelector((state) => getSearchText(state));
+  const searchQuery = useAppSelector((state) => {
+    console.log(state);
+    return getResultsFor(state);
+  });
   const [showFilters, setShowFilters] = React.useState(false);
-
   // const { filterGroups } = data;
 
   const {
@@ -21,7 +23,7 @@ export default function SearchResultsContainer() {
 
   React.useEffect(() => {
     searchResultsMutate({ q: searchQuery });
-  }, []);
+  }, [searchQuery]);
 
   const contents = searchResults?.contents;
   const filterGroups = searchResults?.filterGroups;

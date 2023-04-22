@@ -7,7 +7,12 @@ interface IOptions {
   headers: headersType;
 }
 
-const searchComplete = async (q: string): Promise<string[]> => {
+interface IResponse {
+  query: string;
+  results: string[];
+}
+
+const searchComplete = async (q: string): Promise<IResponse> => {
   const endpoint = `${BASE_URL}/auto-complete/`;
   const params = { q, hl: "en", gl: "IN" };
   const options: IOptions = {

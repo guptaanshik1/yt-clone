@@ -5,12 +5,14 @@ interface InitialState {
   searchQuery: string;
   resultsFor: string;
   cacheResults: Record<string, string>;
+  toggleSuggestions: boolean;
 }
 
 const initialState: InitialState = {
   searchQuery: "",
   resultsFor: "",
   cacheResults: {},
+  toggleSuggestions: false,
 };
 
 export const searchSlice = createSlice({
@@ -26,12 +28,19 @@ export const searchSlice = createSlice({
     setCacheResults: (state, action: PayloadAction<{}>) => {
       state.cacheResults = { ...state.cacheResults, ...action.payload };
     },
+    setOpenSuggestions: (state, action: PayloadAction<boolean>) => {
+      state.toggleSuggestions = action.payload;
+    },
   },
 });
 
 export const getSearchText = (state: RootState) => state.search.searchQuery;
 export const getResultsFor = (state: RootState) => state.search.resultsFor;
 
-export const { setAllSearchQuery, setShowResultFor, setCacheResults } =
-  searchSlice.actions;
+export const {
+  setAllSearchQuery,
+  setShowResultFor,
+  setCacheResults,
+  setOpenSuggestions,
+} = searchSlice.actions;
 export default searchSlice;

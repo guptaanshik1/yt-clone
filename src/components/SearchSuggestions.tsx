@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   getSearchText,
-  setAllSearchQuery,
   setCacheResults,
+  setOpenSuggestions,
+  setShowResultFor,
 } from "../features/searchSlice";
 import useSearchComplete from "../hooks/useSearchComplete";
 import searchSuggestions from "../mocks/autoCompleteResults.json";
@@ -27,7 +28,8 @@ const SearchSuggestions = () => {
 
   React.useEffect(() => {
     if (!isSearchSuggestionsLoading) {
-      setSuggestions(searchSuggestions?.results);
+      setSuggestions(searchSuggestions?.results as string[]);
+      dispatch(setOpenSuggestions(true));
       dispatch(
         setCacheResults({
           [searchQuery]: searchSuggestions?.results,
@@ -41,7 +43,7 @@ const SearchSuggestions = () => {
     timeoutId = setTimeout(() => {
       if (searchQuery !== "") {
         if (cacheResults[searchQuery]) {
-          setSuggestions(cacheResults[searchQuery]);
+          setSuggestions([...cacheResults[searchQuery]]);
         } else {
           refetch();
         }
@@ -53,7 +55,9 @@ const SearchSuggestions = () => {
     };
   }, [searchQuery]);
 
-  if (searchSuggestions?.results?.length <= 0) return null;
+  if ((searchSuggestions?.results?.length as number) <= 0) {
+    return null;
+  }
 
   return (
     <UnorderedList>
@@ -64,8 +68,8 @@ const SearchSuggestions = () => {
           p={"8px"}
           cursor={"pointer"}
           onClick={() => {
-            console.log("item clicked:", item);
-            setAllSearchQuery(item);
+            dispatch(setShowResultFor(item));
+            dispatch(setOpenSuggestions(false));
             navigate("/results");
           }}
         >

@@ -159,7 +159,6 @@ const VideoCard = ({ ...video }) => {
             <GridItem rowStart={3} rowEnd={4} colStart={1} colEnd={2}>
               <chakra.span
                 display={"flex"}
-                // justifyContent={"space-between"}
                 alignItems={"center"}
                 backgroundColor={"red"}
                 color={"#FFFFFF"}
