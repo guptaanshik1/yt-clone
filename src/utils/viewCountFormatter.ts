@@ -5,4 +5,5 @@ export const formatViewCount = (viewCount: string) => {
     return (parseInt(viewCount) / 1000000).toFixed(1) + "M";
   if (parseInt(viewCount) >= 1000)
     return (parseInt(viewCount) / 1000).toFixed(1) + "K";
+  return viewCount;
 };

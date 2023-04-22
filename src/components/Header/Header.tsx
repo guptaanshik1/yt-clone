@@ -1,4 +1,5 @@
 import { Flex, SimpleGrid } from "@chakra-ui/react";
+import React from "react";
 import { useAppSelector } from "../../app/hooks";
 import { getSearchText } from "../../features/searchSlice";
 import useGetColorMode from "../../hooks/useGetColorMode";
@@ -12,6 +13,9 @@ const Header = () => {
   const { isSmallScreen } = useScreenSize();
   const { colorMode } = useGetColorMode();
   const searchQuery = useAppSelector((state) => getSearchText(state));
+  const openSuggestions = useAppSelector(
+    (state) => state.search.toggleSuggestions
+  );
 
   return (
     <SimpleGrid
@@ -36,7 +40,7 @@ const Header = () => {
       </Flex>
       <Flex>
         <SearchBar />
-        {searchQuery.length > 0 && (
+        {searchQuery.length > 0 && openSuggestions && (
           <Flex
             mt={"50px"}
             position={"absolute"}

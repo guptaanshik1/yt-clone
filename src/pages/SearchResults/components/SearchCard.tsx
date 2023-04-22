@@ -15,6 +15,7 @@ import { formatViewCount } from "../../../utils/viewCountFormatter";
 import ThumbnailPlayer from "../../../components/ThumbnailPlayer";
 import { Link } from "react-router-dom";
 import { RxDotsVertical } from "react-icons/rx";
+import { BsBroadcast } from "react-icons/bs";
 
 const SearchCard = ({ ...video }) => {
   const [isMouseOverVideo, setIsMouseOverVideo] = React.useState(false);
@@ -65,25 +66,33 @@ const SearchCard = ({ ...video }) => {
                 objectFit={"cover"}
                 borderRadius={"8px"}
               />
-              <Flex
-                position={"absolute"}
-                bottom={1}
-                right={1}
-                fontSize={"14px"}
-                backgroundColor={"#000000"}
-                color={"#FFFFFF"}
-                borderRadius={"4px"}
-                p={"2px"}
-              >
-                {isMouseOverVideo
-                  ? `Keep hovering to play`
-                  : formatDuration(video?.lengthSeconds)}
-              </Flex>
+              {!video?.isLiveNow && (
+                <Flex
+                  position={"absolute"}
+                  bottom={1}
+                  right={1}
+                  fontSize={"14px"}
+                  backgroundColor={"#000000"}
+                  color={"#FFFFFF"}
+                  borderRadius={"4px"}
+                  p={"2px"}
+                >
+                  {isMouseOverVideo
+                    ? `Keep hovering to play`
+                    : formatDuration(video?.lengthSeconds)}
+                </Flex>
+              )}
             </>
           ) : (
             <>
-              {video?.movingThumbnails && (
+              {video?.movingThumbnails && !video?.isLiveNow ? (
                 <ThumbnailPlayer thumbnailUrl={video?.movingThumbnails[0]} />
+              ) : (
+                <Image
+                  src={video?.thumbnails[0]?.url}
+                  objectFit={"cover"}
+                  borderRadius={"8px"}
+                />
               )}
             </>
           )}
@@ -137,6 +146,22 @@ const SearchCard = ({ ...video }) => {
                   </chakra.span>
                 ) : null}
               </Flex>
+              {video?.isLiveNow ? (
+                <Flex>
+                  <chakra.span
+                    display={"flex"}
+                    alignItems={"center"}
+                    backgroundColor={"red"}
+                    color={"#FFFFFF"}
+                    fontWeight={600}
+                    fontSize={"10px"}
+                    p={"2px 4px"}
+                    w={"80px"}
+                  >
+                    <BsBroadcast size={12} /> &nbsp; Live Now
+                  </chakra.span>
+                </Flex>
+              ) : null}
             </Flex>
           </Link>
           <Flex mt={"10px"}>

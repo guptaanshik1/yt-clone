@@ -11,7 +11,7 @@ import { TfiSearch } from "react-icons/tfi";
 import { MdClose, MdOutlineMic } from "react-icons/md";
 import useGetColorMode from "../hooks/useGetColorMode";
 import { useAppDispatch } from "../app/hooks";
-import { setAllSearchQuery } from "../features/searchSlice";
+import { setAllSearchQuery, setOpenSuggestions } from "../features/searchSlice";
 import VoiceModal from "./VoiceModal";
 
 const SearchBar = () => {
@@ -28,6 +28,7 @@ const SearchBar = () => {
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
+    dispatch(setOpenSuggestions(true));
     dispatch(setAllSearchQuery(e.target.value));
   };
 
