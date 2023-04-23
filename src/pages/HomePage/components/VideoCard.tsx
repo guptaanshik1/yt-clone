@@ -17,8 +17,10 @@ import { BsBroadcast } from "react-icons/bs";
 import { VERIFIED_CHANNEL } from "../../../constants/homePageConstants";
 import { formatDuration } from "../../../utils/formatDuration";
 import ThumbnailPlayer from "../../../components/ThumbnailPlayer";
+import { useHomePageContext } from "../utils/context";
 
 const VideoCard = ({ ...video }) => {
+  const { ulRef } = useHomePageContext();
   const [isMouseOver, setIsMouseOver] = React.useState(false);
   const [isThumbnailMoving, setIsThumbnailMoving] = React.useState(false);
 
@@ -54,6 +56,7 @@ const VideoCard = ({ ...video }) => {
         cursor={"pointer"}
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
+        ref={ulRef}
       >
         {!isThumbnailMoving ? (
           <Flex position={"relative"}>

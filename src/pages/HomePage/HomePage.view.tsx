@@ -6,6 +6,10 @@ import { useHomePageContext } from "./utils/context";
 
 export default function HomePageView() {
   const { videosData, isVideosDataLoading } = useHomePageContext();
+
+  if (isVideosDataLoading) {
+    return <h1>Loading....</h1>;
+  }
   return (
     <Flex
       flexWrap={"wrap"}
@@ -16,14 +20,14 @@ export default function HomePageView() {
     >
       {
         // @ts-ignore
-        !isVideosDataLoading && videosData?.contents?.map((data) => (
-            <Link
-              key={data?.video?.videoId}
-              to={`/watch?v=${data?.video?.videoId}`}
-            >
-              <VideoCard {...data?.video} />
-            </Link>
-          ))
+        videosData?.map((data) => (
+          <Link
+            key={data?.video?.videoId}
+            to={`/watch?v=${data?.video?.videoId}`}
+          >
+            <VideoCard {...data?.video} />
+          </Link>
+        ))
       }
     </Flex>
   );

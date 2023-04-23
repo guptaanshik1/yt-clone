@@ -1,16 +1,20 @@
 import axios from "axios";
 import React from "react";
-import { useQuery } from "react-query";
+import { useInfiniteQuery, useQuery } from "react-query";
 import { BASE_URL, HEADERS, headersType } from "../../../constants/caller";
+import { IBaseResponse } from "../../../types/types";
 
 interface IOptions {
   params: Object;
   headers: headersType;
 }
 
-const getVideos = async (): Promise<any> => {
-  const endpoint = `${BASE_URL}/search/?q=New`;
-  const params = { hl: "en", gl: "IN" };
+const getVideos = async (
+  q: string,
+  cursor?: string
+): Promise<IBaseResponse | undefined> => {
+  const endpoint = `${BASE_URL}/search/`;
+  const params = { q, cursor, hl: "en", gl: "IN" };
   const options: IOptions = {
     params,
     headers: HEADERS,
@@ -20,19 +24,23 @@ const getVideos = async (): Promise<any> => {
   return data;
 };
 
-export default function useGetHomeVideos() {
-  const { data, isLoading, refetch } = useQuery(
-    "home/videos",
-    () => getVideos(),
+export default function useGetHomeVideos(q: string) {
+  const { data, isLoading, fetchNextPage, hasNextPage } = useInfiniteQuery(
+    "home-videos",
+    ({ pageParam = "" }) => getVideos(q, pageParam),
     {
-      onError(err) {
-        console.log(err);
+      getNextPageParam: (lastPage) => {
+        // @ts-ignore
+        return lastPage?.cursorNext;
       },
+      onError: (err) => console.log(err),
     }
   );
+
   return {
     data,
     isLoading,
-    refetch,
+    fetchNextPage,
+    hasNextPage,
   };
 }
