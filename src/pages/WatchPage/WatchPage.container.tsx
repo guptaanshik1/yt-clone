@@ -9,6 +9,7 @@ import comments from "../../mocks/comments.json";
 import replies from "../../mocks/repliesForComments.json";
 import useGetRelatedContent from "./hooks/useGetRelatedContent";
 import useGetComments from "./hooks/useGetComments";
+import useIntersectionObserver from "../../services/useIntersectionObserver";
 
 export default function WatchPageContainer() {
   const [searchParams] = useSearchParams();
@@ -16,7 +17,7 @@ export default function WatchPageContainer() {
   // const { data: videoDetails, isLoading: isVideoDetailsLoading } =
   //   useGetVideoDetails(videoId as string);
 
-  // const { data: relatedContent, isLoading: isRelatedLoading } =
+  // const { data: relatedContent, isLoading: isRelatedLoading, fetchNextPage, hasNextPage } =
   //   useGetRelatedContent(videoId as string);
 
   // const { data: commentsData, isLoading: isCommentsLoading } = useGetComments(
@@ -24,9 +25,12 @@ export default function WatchPageContainer() {
   // );
 
   // const repliesData = commentsData?.replies["0"];
+  const ulRef = React.useRef(null);
   const [isShowFullDesc, setIsShowFullDesc] = React.useState(false);
   const [showReplyPost, setShowReplyPost] = React.useState(false);
   const { totalCommentsCount, comments: allComments } = comments;
+
+  // useIntersectionObserver(fetchNextPage, hasNextPage, ulRef)
 
   return (
     <WatchPageContext.Provider
@@ -36,6 +40,7 @@ export default function WatchPageContainer() {
         // isVideoDetailsLoading,
         // repliesData,
         videoDetails: data,
+        ulRef,
         relatedContent,
         videoId,
         isShowFullDesc,

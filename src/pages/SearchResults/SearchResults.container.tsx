@@ -5,28 +5,34 @@ import SearchResultsView from "./SearchResults.view";
 import { SearchResultsContext } from "./utils/context";
 import data from "../../mocks/searchResults.json";
 import { getResultsFor } from "../../features/searchSlice";
+import useIntersectionObserver from "../../services/useIntersectionObserver";
+import { IContent, IFilterGroup } from "../../types/types";
 
 export default function SearchResultsContainer() {
   // const searchQuery = useAppSelector((state) => getResultsFor(state));
   const searchQuery = useAppSelector((state) => {
-    console.log(state);
     return getResultsFor(state);
   });
   const [showFilters, setShowFilters] = React.useState(false);
-  // const { filterGroups } = data;
+  const [selectedOption, setSelectedOption] = React.useState(false);
+  // const [contents, setContents] = React.useState<IContent[]>([]);
+  // const [filterGroups, setFilterGroups] = React.useState<IFilterGroup[]>([]);
+  // const { filterGroups, contents } = data;
+
+  const ulRef = React.useRef<HTMLUListElement>(null);
 
   const {
-    mutate: searchResultsMutate,
-    data: searchResults,
-    isLoading: isSearchResultsLoading,
-  } = useGetSearchVideos();
+    data,
+    isLoading: isSearchResultLoading,
+    refetch: refetchFilteredData,
+    fetchNextPage,
+    hasNextPage,
+  } = useGetSearchVideos(searchQuery);
 
-  React.useEffect(() => {
-    searchResultsMutate({ q: searchQuery });
-  }, [searchQuery]);
+  useIntersectionObserver(fetchNextPage, hasNextPage, ulRef);
 
-  const contents = searchResults?.contents;
-  const filterGroups = searchResults?.filterGroups;
+  const contents = data?.pages?.flatMap((page) => page?.contents);
+  const filterGroups = data?.pages?.flatMap((page) => page?.filterGroups);
 
   return (
     <SearchResultsContext.Provider
@@ -36,9 +42,13 @@ export default function SearchResultsContainer() {
         contents,
         showFilters,
         setShowFilters,
-        searchResultsMutate,
         searchQuery,
-        isSearchResultsLoading,
+        ulRef,
+        isSearchResultLoading,
+        hasNextPage,
+        refetchFilteredData,
+        selectedOption,
+        setSelectedOption,
       }}
     >
       <SearchResultsView />

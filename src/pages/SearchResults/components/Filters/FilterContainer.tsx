@@ -5,7 +5,7 @@ import FilterOptions from "./FilterOptions";
 
 const FilterContainer = () => {
   const { filterGroups } = useSearchResultsContext();
-  console.log("filterGroups:", filterGroups);
+
   return (
     <Flex mt={"20px"}>
       {
