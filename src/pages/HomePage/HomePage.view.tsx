@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Skeleton } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 import VideoCard from "./components/VideoCard";
@@ -8,8 +8,15 @@ export default function HomePageView() {
   const { videosData, isVideosDataLoading } = useHomePageContext();
 
   if (isVideosDataLoading) {
-    return <h1>Loading....</h1>;
+    return Array.from({ length: 9 }, (x, id) => {
+      return (
+        <Flex m={"40px 100px"} flexWrap={"wrap"} h={"100px"}>
+          <Skeleton p={"2px 8px"} w={"100%"} key={id} />
+        </Flex>
+      );
+    });
   }
+
   return (
     <Flex
       flexWrap={"wrap"}
