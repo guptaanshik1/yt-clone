@@ -1,4 +1,4 @@
-import { Divider, Flex, Text } from "@chakra-ui/react";
+import { Divider, Flex, Skeleton, Text } from "@chakra-ui/react";
 import { RiEqualizerFill } from "react-icons/ri";
 import FilterContainer from "./components/Filters/FilterContainer";
 import SearchCardsContainer from "./components/SearchCardsContainer";
@@ -8,7 +8,15 @@ export default function SearchResultsView() {
   const { showFilters, setShowFilters, isSearchResultLoading } =
     useSearchResultsContext();
 
-  if (isSearchResultLoading) return <>Loading....</>;
+  if (isSearchResultLoading) {
+    return Array.from({ length: 9 }, (x, id) => {
+      return (
+        <Flex m={"40px 100px"} flexWrap={"wrap"} h={"100px"}>
+          <Skeleton p={"2px 8px"} w={"100%"} key={id} />
+        </Flex>
+      );
+    });
+  }
   return (
     <Flex
       flexWrap={"wrap"}
