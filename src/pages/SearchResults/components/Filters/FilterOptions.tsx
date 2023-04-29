@@ -15,21 +15,26 @@ interface IProps {
 }
 
 const FilterOptions = ({ options }: IProps) => {
-  const { searchQuery, searchResultsMutate } = useSearchResultsContext();
+  const {
+    searchQuery,
+    refetchFilteredData,
+    selectedOption,
+    setSelectedOption,
+  } = useSearchResultsContext();
+
   const [selectedFilter, setSelectedFilter] = React.useState("");
 
   const handleFilterClick = (option: {
     label: string;
     cursorSelect: string;
   }) => {
-    setSelectedFilter(option?.label);
-    console.log({ selectedFilter });
-    console.log({ searchQuery });
     // @ts-ignore
-    searchResultsMutate({
-      q: searchQuery,
-      cursor: option?.cursorSelect,
-    });
+    setSelectedFilter(option?.label);
+    // @ts-ignore
+    setSelectedOption(option);
+    console.log(selectedOption);
+    // @ts-ignore
+    // refetchFilteredData({ cursor: selectedOption?.cursorSelect });
   };
 
   return (

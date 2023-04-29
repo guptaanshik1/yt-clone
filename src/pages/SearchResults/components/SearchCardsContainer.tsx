@@ -4,7 +4,8 @@ import { useSearchResultsContext } from "../utils/context";
 import SearchCard from "./SearchCard";
 
 const SearchCardsContainer = () => {
-  const { contents } = useSearchResultsContext();
+  const { contents, isSearchResultLoading } = useSearchResultsContext();
+  if (isSearchResultLoading) return <h1>Loading....</h1>;
   return (
     <>
       {

@@ -16,8 +16,10 @@ import ThumbnailPlayer from "../../../components/ThumbnailPlayer";
 import { Link } from "react-router-dom";
 import { RxDotsVertical } from "react-icons/rx";
 import { BsBroadcast } from "react-icons/bs";
+import { useSearchResultsContext } from "../utils/context";
 
 const SearchCard = ({ ...video }) => {
+  const { ulRef } = useSearchResultsContext();
   const [isMouseOverVideo, setIsMouseOverVideo] = React.useState(false);
   const [isThumbnailMoving, setIsThumbnailMoving] = React.useState(false);
   const [showMenuIcon, setShowMenuIcon] = React.useState(false);
@@ -52,6 +54,7 @@ const SearchCard = ({ ...video }) => {
         p={"8px"}
         maxH={"200px"}
         gap={"14px"}
+        ref={ulRef}
       >
         <Flex
           w={"35%"}

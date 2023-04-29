@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useMutation } from "react-query";
+import { useInfiniteQuery, useMutation } from "react-query";
 import { BASE_URL, HEADERS, headersType } from "../../../constants/caller";
+import { IBaseResponse } from "../../../types/types";
 
 interface IOptions {
   params: Object;
@@ -12,9 +13,17 @@ interface IPayload {
   cursor?: string;
 }
 
-const getVideos = async (q: string, cursor?: string): Promise<any> => {
+const getVideos = async (
+  q: string,
+  cursor?: string
+): Promise<IBaseResponse> => {
   const endpoint = `${BASE_URL}/search/`;
-  const params = { q, cursor, hl: "en", gl: "IN" };
+  const params = {
+    q,
+    cursor,
+    hl: "en",
+    gl: "IN",
+  };
   const options: IOptions = {
     params,
     headers: HEADERS,
@@ -24,19 +33,29 @@ const getVideos = async (q: string, cursor?: string): Promise<any> => {
   return data;
 };
 
-export default function useGetSearchVideos() {
-  const { mutate, data, isLoading } = useMutation(
-    ["search/videos"],
-    ({ q, cursor }: IPayload) => getVideos(q, cursor),
-    {
-      onError(err) {
-        console.log(err);
-      },
-    }
-  );
+export default function useGetSearchVideos(q: string) {
+  const { data, isLoading, refetch, fetchNextPage, hasNextPage } =
+    useInfiniteQuery(
+      ["search-videos"],
+      ({ pageParam = "" }) => getVideos(q, pageParam),
+      {
+        getNextPageParam: (lastPage) => {
+          // @ts-ignore
+          return lastPage?.cursorNext;
+        },
+        onError: (err) => {
+          // @ts-ignore
+          const { response } = err;
+          alert(response?.data?.message);
+        },
+      }
+    );
+
   return {
-    mutate,
     data,
     isLoading,
+    refetch,
+    fetchNextPage,
+    hasNextPage,
   };
 }

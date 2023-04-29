@@ -48,8 +48,6 @@ export default function ChannelContainer() {
   //   }
   // }, [pathname]);
 
-  console.log({ channelVideosLatest });
-
   return (
     <ChannelContext.Provider
       // @ts-ignore

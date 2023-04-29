@@ -33,7 +33,11 @@ export default function useGetHomeVideos(q: string) {
         // @ts-ignore
         return lastPage?.cursorNext;
       },
-      onError: (err) => console.log(err),
+      onError: (err) => {
+        // @ts-ignore
+        const { response } = err;
+        alert(response?.data?.message);
+      },
     }
   );
 

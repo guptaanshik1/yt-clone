@@ -10,10 +10,12 @@ import React from "react";
 import { GoVerified } from "react-icons/go";
 import { VERIFIED_CHANNEL } from "../../../../constants/homePageConstants";
 import { formatViewCount } from "../../../../utils/viewCountFormatter";
+import { useWatchPageContext } from "../../utils/context";
 
 const ContentCard = ({ ...video }) => {
+  const { ulRef } = useWatchPageContext();
   return (
-    <Flex w={"100%"} flexDir={"row"} my={"10px"} h={"auto"}>
+    <Flex w={"100%"} flexDir={"row"} my={"10px"} h={"auto"} ref={ulRef}>
       <Flex w={"100%"}>
         <Image
           w={"1000px"}
