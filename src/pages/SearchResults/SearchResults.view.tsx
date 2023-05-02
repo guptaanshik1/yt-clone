@@ -17,6 +17,7 @@ export default function SearchResultsView() {
       );
     });
   }
+
   return (
     <Flex
       flexWrap={"wrap"}

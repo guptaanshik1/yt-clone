@@ -34,22 +34,28 @@ const getVideos = async (
 };
 
 export default function useGetSearchVideos(q: string) {
-  const { data, isLoading, refetch, fetchNextPage, hasNextPage } =
-    useInfiniteQuery(
-      ["search-videos"],
-      ({ pageParam = "" }) => getVideos(q, pageParam),
-      {
-        getNextPageParam: (lastPage) => {
-          // @ts-ignore
-          return lastPage?.cursorNext;
-        },
-        onError: (err) => {
-          // @ts-ignore
-          const { response } = err;
-          alert(response?.data?.message);
-        },
-      }
-    );
+  const {
+    data,
+    isLoading,
+    refetch,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery(
+    ["search-videos"],
+    ({ pageParam = "" }) => getVideos(q, pageParam),
+    {
+      getNextPageParam: (lastPage) => {
+        // @ts-ignore
+        return lastPage?.cursorNext;
+      },
+      onError: (err) => {
+        // @ts-ignore
+        const { response } = err;
+        alert(response?.data?.message);
+      },
+    }
+  );
 
   return {
     data,
@@ -57,5 +63,6 @@ export default function useGetSearchVideos(q: string) {
     refetch,
     fetchNextPage,
     hasNextPage,
+    isFetchingNextPage,
   };
 }

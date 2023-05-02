@@ -6,6 +6,7 @@ import {
   UnorderedList,
   chakra,
   Box,
+  Spinner,
 } from "@chakra-ui/react";
 import React from "react";
 import { GoVerified } from "react-icons/go";
@@ -19,7 +20,7 @@ import { BsBroadcast } from "react-icons/bs";
 import { useSearchResultsContext } from "../utils/context";
 
 const SearchCard = ({ ...video }) => {
-  const { ulRef } = useSearchResultsContext();
+  const { ulRef, isFetchingNextPage } = useSearchResultsContext();
   const [isMouseOverVideo, setIsMouseOverVideo] = React.useState(false);
   const [isThumbnailMoving, setIsThumbnailMoving] = React.useState(false);
   const [showMenuIcon, setShowMenuIcon] = React.useState(false);
@@ -56,6 +57,11 @@ const SearchCard = ({ ...video }) => {
         gap={"14px"}
         ref={ulRef}
       >
+        {isFetchingNextPage && (
+          <div style={{ position: "absolute" }}>
+            <Spinner size={"xl"} color={"blue"} />
+          </div>
+        )}
         <Flex
           w={"35%"}
           position={"relative"}

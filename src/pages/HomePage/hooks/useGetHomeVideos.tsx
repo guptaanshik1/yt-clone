@@ -25,26 +25,28 @@ const getVideos = async (
 };
 
 export default function useGetHomeVideos(q: string) {
-  const { data, isLoading, fetchNextPage, hasNextPage } = useInfiniteQuery(
-    "home-videos",
-    ({ pageParam = "" }) => getVideos(q, pageParam),
-    {
-      getNextPageParam: (lastPage) => {
-        // @ts-ignore
-        return lastPage?.cursorNext;
-      },
-      onError: (err) => {
-        // @ts-ignore
-        const { response } = err;
-        alert(response?.data?.message);
-      },
-    }
-  );
+  const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery(
+      "home-videos",
+      ({ pageParam = "" }) => getVideos(q, pageParam),
+      {
+        getNextPageParam: (lastPage) => {
+          // @ts-ignore
+          return lastPage?.cursorNext;
+        },
+        onError: (err) => {
+          // @ts-ignore
+          const { response } = err;
+          alert(response?.data?.message);
+        },
+      }
+    );
 
   return {
     data,
     isLoading,
     fetchNextPage,
     hasNextPage,
+    isFetchingNextPage,
   };
 }
