@@ -27,6 +27,7 @@ export default function SearchResultsContainer() {
     refetch: refetchFilteredData,
     fetchNextPage,
     hasNextPage,
+    isFetchingNextPage,
   } = useGetSearchVideos(searchQuery);
 
   useIntersectionObserver(fetchNextPage, hasNextPage, ulRef);
@@ -49,6 +50,7 @@ export default function SearchResultsContainer() {
         refetchFilteredData,
         selectedOption,
         setSelectedOption,
+        isFetchingNextPage,
       }}
     >
       <SearchResultsView />

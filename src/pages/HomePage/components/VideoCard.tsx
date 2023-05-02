@@ -7,6 +7,7 @@ import {
   chakra,
   UnorderedList,
   ListItem,
+  Spinner,
 } from "@chakra-ui/react";
 import React from "react";
 import { RxDotsVertical } from "react-icons/rx";
@@ -20,7 +21,7 @@ import ThumbnailPlayer from "../../../components/ThumbnailPlayer";
 import { useHomePageContext } from "../utils/context";
 
 const VideoCard = ({ ...video }) => {
-  const { ulRef } = useHomePageContext();
+  const { ulRef, isFetchingNextPage } = useHomePageContext();
   const [isMouseOver, setIsMouseOver] = React.useState(false);
   const [isThumbnailMoving, setIsThumbnailMoving] = React.useState(false);
 
@@ -58,6 +59,11 @@ const VideoCard = ({ ...video }) => {
         onMouseOut={handleMouseOut}
         ref={ulRef}
       >
+        {isFetchingNextPage && (
+          <div style={{ position: "absolute" }}>
+            <Spinner size={"xl"} color={"blue"} />
+          </div>
+        )}
         {!isThumbnailMoving ? (
           <Flex position={"relative"}>
             <Image src={video?.thumbnails[0]?.url} borderRadius={"8px"} />

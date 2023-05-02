@@ -8,8 +8,6 @@ export type headersType = {
 };
 
 export const HEADERS: headersType = {
-  "X-RapidAPI-Key": "3116e7c6e8msh005f83f09487ea6p1a455djsnee65d1ff9206",
+  "X-RapidAPI-Key": "581c3c799emshdf3e568d2626bd9p135174jsnacb07fab0cca",
   "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
 };
-
-// https://cors-anywhere.herokuapp.com

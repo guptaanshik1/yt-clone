@@ -1,11 +1,11 @@
-import { Flex, Skeleton } from "@chakra-ui/react";
-import React from "react";
+import { Flex, Skeleton, Spinner } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import VideoCard from "./components/VideoCard";
 import { useHomePageContext } from "./utils/context";
 
 export default function HomePageView() {
-  const { videosData, isVideosDataLoading } = useHomePageContext();
+  const { videosData, isVideosDataLoading, hasNextPage, isFetchingNextPage } =
+    useHomePageContext();
 
   if (isVideosDataLoading) {
     return Array.from({ length: 9 }, (x, id) => {

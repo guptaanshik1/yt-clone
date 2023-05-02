@@ -16,6 +16,7 @@ export default function HomePageContainer() {
     isLoading: isVideosDataLoading,
     fetchNextPage,
     hasNextPage,
+    isFetchingNextPage
   } = useGetHomeVideos("New");
 
   useIntersectionObserver(fetchNextPage, hasNextPage, ulRef);
@@ -30,6 +31,7 @@ export default function HomePageContainer() {
         ulRef,
         hasNextPage,
         isVideosDataLoading,
+        isFetchingNextPage
       }}
     >
       <HomePageView />
