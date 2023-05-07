@@ -7,6 +7,7 @@ import {
   Menu,
   IconButton,
   MenuButton,
+  ResponsiveValue,
 } from "@chakra-ui/react";
 import useGetColorMode from "../../../hooks/useGetColorMode";
 import { useWatchPageContext } from "../utils/context";
@@ -21,12 +22,14 @@ import {
   AiTwotoneLike,
   AiTwotoneDislike,
 } from "react-icons/ai";
+import useScreenSize from "../../../hooks/useScreenSize";
 
 const VideoDetails = () => {
   const { videoDetails } = useWatchPageContext();
   const [isLiked, setIsLiked] = React.useState(false);
   const [isDisliked, setIsDisliked] = React.useState(false);
   const { colorMode } = useGetColorMode();
+  const { isSmallScreen, isLargeScreen, isMediumScreen } = useScreenSize();
 
   const handleLiking = () => {
     setIsDisliked(false);
@@ -38,9 +41,19 @@ const VideoDetails = () => {
     setIsDisliked(!isDisliked);
   };
 
+  const checkWidth = (): ResponsiveValue<number | (string & {})> => {
+    if (isSmallScreen) {
+      return "96%";
+    } else if (isMediumScreen) {
+      return "95%";
+    } else {
+      return "900px";
+    }
+  };
+
   return (
     <Flex
-      w={"900px"}
+      w={checkWidth()}
       flexDir={"column"}
       m={"20px"}
       justifyContent={"space-between"}
@@ -50,8 +63,12 @@ const VideoDetails = () => {
           {videoDetails?.title}
         </Text>
       </Flex>
-      <Flex>
-        <Flex w={"60%"} alignItems={"center"}>
+      <Flex flexDir={isSmallScreen ? "column" : "row"}>
+        <Flex
+          w={"100%"}
+          alignItems={"center"}
+          mr={!isLargeScreen ? "155px" : "0"}
+        >
           <Flex>
             <Image
               src={videoDetails?.author?.avatar[0]?.url}
@@ -77,11 +94,15 @@ const VideoDetails = () => {
           </Button>
         </Flex>
 
-        <Flex alignItems={"center"}>
+        <Flex
+          alignItems={"center"}
+          w={isLargeScreen ? "100%" : "96%"}
+          mt={isSmallScreen ? "10px" : "0"}
+        >
           {/* Flex for like and dislike */}
           <Flex
             rounded={"full"}
-            w={"120px"}
+            w={isSmallScreen ? "20%" : "40%"}
             bgColor={colorMode == "light" ? "#f2f2f2" : "rgb(47 46 46)"}
             p={"8px"}
             justifyContent={"space-between"}
@@ -144,18 +165,20 @@ const VideoDetails = () => {
             <TbShare3 size={"22px"} />
             &nbsp;{"Share"}
           </Button>
-          <Button
-            rounded={"full"}
-            bgColor={colorMode == "light" ? "#f2f2f2" : "rgb(47 46 46)"}
-            p={"8px"}
-            w={"140px"}
-            ml={"20px"}
-            _hover={{ opacity: 0.4 }}
-            color={colorMode == "dark" ? "#FFFFFF" : "#000000"}
-          >
-            <TfiDownload size={"18px"} />
-            &nbsp;{"Download"}
-          </Button>
+          {(isLargeScreen || isSmallScreen) && (
+            <Button
+              rounded={"full"}
+              bgColor={colorMode == "light" ? "#f2f2f2" : "rgb(47 46 46)"}
+              p={"8px"}
+              w={"140px"}
+              ml={"20px"}
+              _hover={{ opacity: 0.4 }}
+              color={colorMode == "dark" ? "#FFFFFF" : "#000000"}
+            >
+              <TfiDownload size={"18px"} />
+              &nbsp;{"Download"}
+            </Button>
+          )}
           <Menu>
             <MenuButton
               ml={"16px"}

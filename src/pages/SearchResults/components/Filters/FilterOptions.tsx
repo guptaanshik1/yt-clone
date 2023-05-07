@@ -1,5 +1,6 @@
 import { Flex, Text } from "@chakra-ui/react";
 import React from "react";
+import EventBus from "../../../../utils/EventBus";
 import { useSearchResultsContext } from "../../utils/context";
 
 interface IProps {
@@ -35,6 +36,11 @@ const FilterOptions = ({ options }: IProps) => {
     console.log(selectedOption);
     // @ts-ignore
     // refetchFilteredData({ cursor: selectedOption?.cursorSelect });
+    EventBus.getInstance().fireEvent(
+      "api - /search",
+      //@ts-ignore
+      selectedOption?.cursorSelect
+    );
   };
 
   return (
