@@ -2,6 +2,7 @@ import { Divider, Flex } from "@chakra-ui/react";
 import React from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { closeSidebar, openSidebar } from "../../features/sidebarSlice";
+import useScreenSize from "../../hooks/useScreenSize";
 import CommentsContainer from "./components/Comments/CommentsContainer";
 import VideoDetails from "./components/VideoDetails";
 import VideoPlayer from "./components/VideoPlayer";
@@ -9,6 +10,7 @@ import Container from "./components/VideoRelatedContent/Container";
 
 export default function WatchPageView() {
   const dispatch = useAppDispatch();
+  const { isLargeScreen } = useScreenSize();
   React.useEffect(() => {
     dispatch(closeSidebar());
 
@@ -18,16 +20,20 @@ export default function WatchPageView() {
   }, []);
 
   return (
-    <Flex>
+    <Flex flexDir={isLargeScreen ? "row" : "column"}>
       <Flex flexDir={"column"}>
         <VideoPlayer />
         <VideoDetails />
         <Divider w={"95%"} my={"10px"} mx={"20px"} />
+        {!isLargeScreen && <Container />}
         <CommentsContainer />
       </Flex>
-      <Flex flexDir={"column"} mt={"20px"} w={"100%"} mr={"10px"}>
-        <Container />
-      </Flex>
+      {isLargeScreen && (
+        <Flex flexDir={"column"} mt={"20px"} w={"100%"} mr={"10px"}>
+          {/* For video related content */}
+          <Container />
+        </Flex>
+      )}
     </Flex>
   );
 }

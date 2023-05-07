@@ -5,26 +5,40 @@ import {
   chakra,
   UnorderedList,
   ListItem,
+  ResponsiveValue,
 } from "@chakra-ui/react";
 import React from "react";
 import { GoVerified } from "react-icons/go";
 import { VERIFIED_CHANNEL } from "../../../../constants/homePageConstants";
+import useScreenSize from "../../../../hooks/useScreenSize";
 import { limitChars } from "../../../../utils/limitTitleChars";
 import { formatViewCount } from "../../../../utils/viewCountFormatter";
 import { useWatchPageContext } from "../../utils/context";
 
 const ContentCard = ({ ...video }) => {
+  const { isLargeScreen, isSmallScreen, isMediumScreen } = useScreenSize();
   const { ulRef } = useWatchPageContext();
+
+  const checkWidth = (): ResponsiveValue<number | (string & {})> => {
+    if (isSmallScreen) {
+      return "96%";
+    } else if (isMediumScreen) {
+      return "96%";
+    } else {
+      return "100%";
+    }
+  };
+
   return (
     <Flex
-      w={"100%"}
+      w={checkWidth()}
       flexDir={"row"}
       my={"10px"}
+      mx={isLargeScreen ? "0" : "10px"}
       h={"auto"}
       ref={ulRef}
-      border={"1px solid blue"}
     >
-      <Flex w={"100%"} border={"1px solid red"}>
+      <Flex w={"200px"}>
         <Image
           w={"1000px"}
           src={video?.thumbnails[0]?.url}
@@ -33,7 +47,7 @@ const ContentCard = ({ ...video }) => {
           borderRadius={"8px"}
         />
       </Flex>
-      <Flex w={"100%"} flexDir={"column"} ml={"4px"} border={"1px solid brown"}>
+      <Flex w={"100%"} flexDir={"column"} ml={"4px"}>
         <Flex
           flexWrap={"wrap"}
           alignItems={"flex-start"}
