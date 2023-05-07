@@ -1,25 +1,40 @@
-import { Flex, IconButton, Menu, MenuButton, Text } from "@chakra-ui/react";
-import React from "react";
+import {
+  Flex,
+  IconButton,
+  Menu,
+  MenuButton,
+  Text,
+  Box,
+  ResponsiveValue,
+} from "@chakra-ui/react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { RxDotsVertical } from "react-icons/rx";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { toggleMenu } from "../../features/menuSlice";
-import useGetColorMode from "../../hooks/useGetColorMode";
-import MenuDropdown from "./HeaderMenu/MenuDropdown";
+import useScreenSize from "../../hooks/useScreenSize";
 import MenuWrapper from "./HeaderMenu/MenuWrapper";
 
 const UserHeader = () => {
-  const { isDark } = useGetColorMode();
+  const { isSmallScreen, isMediumScreen, isLargeScreen } = useScreenSize();
   const dispatch = useAppDispatch();
   const isMenuOpen = useAppSelector((state) => state.menu.isMenuOpen);
 
+  const decideWidth = (): ResponsiveValue<number | (string & {})> => {
+    if (isSmallScreen) {
+      return "100px";
+    } else if (isMediumScreen && !isLargeScreen) {
+      return "350px";
+    } else {
+      return "100px";
+    }
+  };
+
   return (
-    <Flex justifyContent={"center"} alignContent={"center"}>
+    <Flex alignContent={"center"} w={"100%"}>
       <Flex
-        justifyContent={"center"}
+        justifyContent={"space-around"}
         alignContent={"center"}
         textAlign={"center"}
-        m={"0.4em 2em"}
         cursor={"pointer"}
       >
         <Menu isOpen={isMenuOpen}>
@@ -43,18 +58,20 @@ const UserHeader = () => {
       </Flex>
       <Flex
         border={"1px solid lightgray"}
-        w={"120px"}
         m={"4px"}
         h={"35px"}
-        p={"0 0.4em"}
+        p={"0 0.8em"}
         borderRadius={"50px"}
-        justifyContent={"space-around"}
+        justifyContent={isSmallScreen ? "flex-start" : "space-around"}
         alignItems={"center"}
         alignSelf={"center"}
         cursor={"pointer"}
+        w={decideWidth()}
       >
-        <FaRegUserCircle size={"20px"} color={"blue"} />
-        <Text color={"blue"} fontSize={"14px"}>
+        <Box>
+          <FaRegUserCircle size={"20px"} color={"blue"} />
+        </Box>
+        <Text color={"blue"} fontSize={"14px"} whiteSpace="nowrap" ml={"4px"}>
           Sign In
         </Text>
       </Flex>

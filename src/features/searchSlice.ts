@@ -6,6 +6,7 @@ interface InitialState {
   resultsFor: string;
   cacheResults: Record<string, string>;
   toggleSuggestions: boolean;
+  isSmallScreenSearchVisible: boolean;
 }
 
 const initialState: InitialState = {
@@ -13,6 +14,7 @@ const initialState: InitialState = {
   resultsFor: "",
   cacheResults: {},
   toggleSuggestions: false,
+  isSmallScreenSearchVisible: false,
 };
 
 export const searchSlice = createSlice({
@@ -31,6 +33,9 @@ export const searchSlice = createSlice({
     setOpenSuggestions: (state, action: PayloadAction<boolean>) => {
       state.toggleSuggestions = action.payload;
     },
+    setSmallScreenVisible: (state, action: PayloadAction<boolean>) => {
+      state.isSmallScreenSearchVisible = action.payload;
+    },
   },
 });
 
@@ -42,5 +47,6 @@ export const {
   setShowResultFor,
   setCacheResults,
   setOpenSuggestions,
+  setSmallScreenVisible,
 } = searchSlice.actions;
 export default searchSlice;

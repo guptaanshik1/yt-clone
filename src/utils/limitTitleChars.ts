@@ -13,3 +13,10 @@ export const limitDescriptionChars = (title: string): string => {
     omission: "...",
   });
 };
+
+export const limitChars = (keyword: string): string => {
+  return truncate(keyword, {
+    length: 50,
+    omission: "....",
+  });
+};
