@@ -6,9 +6,12 @@ const Container = () => {
   const { relatedContent } = useWatchPageContext();
   return (
     <>
-      {relatedContent?.contents?.map((content) => (
-        <ContentCard key={content?.video?.videoId} {...content.video} />
-      ))}
+      {
+        // @ts-ignores
+        relatedContent?.contents?.map((content) => (
+          <ContentCard key={content?.video?.videoId} {...content.video} />
+        ))
+      }
     </>
   );
 };

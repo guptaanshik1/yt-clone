@@ -9,14 +9,22 @@ import {
 import React from "react";
 import { GoVerified } from "react-icons/go";
 import { VERIFIED_CHANNEL } from "../../../../constants/homePageConstants";
+import { limitChars } from "../../../../utils/limitTitleChars";
 import { formatViewCount } from "../../../../utils/viewCountFormatter";
 import { useWatchPageContext } from "../../utils/context";
 
 const ContentCard = ({ ...video }) => {
   const { ulRef } = useWatchPageContext();
   return (
-    <Flex w={"100%"} flexDir={"row"} my={"10px"} h={"auto"} ref={ulRef}>
-      <Flex w={"100%"}>
+    <Flex
+      w={"100%"}
+      flexDir={"row"}
+      my={"10px"}
+      h={"auto"}
+      ref={ulRef}
+      border={"1px solid blue"}
+    >
+      <Flex w={"100%"} border={"1px solid red"}>
         <Image
           w={"1000px"}
           src={video?.thumbnails[0]?.url}
@@ -25,7 +33,7 @@ const ContentCard = ({ ...video }) => {
           borderRadius={"8px"}
         />
       </Flex>
-      <Flex w={"100%"} flexDir={"column"} ml={"4px"}>
+      <Flex w={"100%"} flexDir={"column"} ml={"4px"} border={"1px solid brown"}>
         <Flex
           flexWrap={"wrap"}
           alignItems={"flex-start"}
@@ -33,7 +41,7 @@ const ContentCard = ({ ...video }) => {
           mb={"4px"}
         >
           <Text fontWeight={700} fontSize={"12px"}>
-            {video?.title}
+            {limitChars(video?.title)}
           </Text>
         </Flex>
         <Flex mb="4px">
