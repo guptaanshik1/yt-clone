@@ -25,7 +25,7 @@ const FilterOptions = ({ options }: IProps) => {
 
   const [selectedFilter, setSelectedFilter] = React.useState("");
 
-  const handleFilterClick = (option: {
+  const handleFilterClick = async (option: {
     label: string;
     cursorSelect: string;
   }) => {
@@ -33,14 +33,6 @@ const FilterOptions = ({ options }: IProps) => {
     setSelectedFilter(option?.label);
     // @ts-ignore
     setSelectedOption(option);
-    console.log(selectedOption);
-    // @ts-ignore
-    // refetchFilteredData({ cursor: selectedOption?.cursorSelect });
-    EventBus.getInstance().fireEvent(
-      "api - /search",
-      //@ts-ignore
-      selectedOption?.cursorSelect
-    );
   };
 
   return (
@@ -54,6 +46,7 @@ const FilterOptions = ({ options }: IProps) => {
       flexDir={"column"}
     >
       {options?.filters?.map((option) => {
+        console.log(option?.selected);
         return (
           <Flex
             key={option?.label}
@@ -65,7 +58,7 @@ const FilterOptions = ({ options }: IProps) => {
               fontSize={"14px"}
               lineHeight={"16px"}
               cursor={"pointer"}
-              fontWeight={option?.selected ? 700 : 400}
+              fontWeight={400}
             >
               {option?.label}
             </Text>
