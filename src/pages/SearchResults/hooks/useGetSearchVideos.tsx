@@ -17,16 +17,27 @@ interface IPayload {
 
 const getVideos = async (
   q: string,
-  cursor?: string
+  cursor?: string,
+  selectedFilterCursor?: string
 ): Promise<IBaseResponse> => {
-  console.log(cursor);
   const endpoint = `${BASE_URL}/search/`;
-  const params = {
+  let params = {
     q,
-    cursor,
     hl: "en",
     gl: "IN",
   };
+  if (cursor) {
+    params = {
+      ...params,
+      cursor,
+    };
+  } else if (selectedFilterCursor) {
+    params = {
+      ...params,
+      cursor: selectedFilterCursor,
+    };
+  }
+
   const options: IOptions = {
     params,
     headers: HEADERS,
@@ -36,8 +47,10 @@ const getVideos = async (
   return data;
 };
 
-export default function useGetSearchVideos(q: string) {
-  const [filter, setFilter] = React.useState(" ̰");
+export default function useGetSearchVideos(
+  q: string,
+  selectedFilterCursor: string
+) {
   const {
     data,
     isLoading,
@@ -46,8 +59,8 @@ export default function useGetSearchVideos(q: string) {
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery(
-    ["search-videos", filter],
-    ({ pageParam = "" }) => getVideos(q, filter ? filter : pageParam),
+    ["search-videos", q, selectedFilterCursor],
+    ({ pageParam = "" }) => getVideos(q, pageParam, selectedFilterCursor),
     {
       getNextPageParam: (lastPage) => {
         // @ts-ignore
@@ -60,11 +73,6 @@ export default function useGetSearchVideos(q: string) {
       },
     }
   );
-
-  React.useEffect(() => {
-    EventBus.getInstance().addListener("api - /search", setFilter);
-    return () => EventBus.getInstance().removeListener(setFilter);
-  }, []);
 
   return {
     data,

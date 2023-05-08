@@ -73,9 +73,9 @@ const Header = () => {
             <SearchBar />
             {searchQuery.length > 0 && openSuggestions && (
               <Flex
-                mt={"50px"}
+                mt={"600px"}
                 position={"absolute"}
-                width={"30%"}
+                width={"340px"}
                 h={"auto"}
                 backgroundColor={"#FFFFFF"}
                 borderRadius={"12px"}

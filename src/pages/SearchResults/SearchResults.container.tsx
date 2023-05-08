@@ -28,7 +28,7 @@ export default function SearchResultsContainer() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useGetSearchVideos(searchQuery);
+  } = useGetSearchVideos(searchQuery, selectedOption?.cursorSelect);
 
   useIntersectionObserver(fetchNextPage, hasNextPage, ulRef);
 
