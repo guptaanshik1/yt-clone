@@ -5,11 +5,11 @@ import { formatViewCount } from "../../../../utils/viewCountFormatter";
 import { useWatchPageContext } from "../../utils/context";
 
 const CommentsTop = () => {
-  const { totalCommentsCount } = useWatchPageContext();
+  const { comments } = useWatchPageContext();
   return (
     <Flex alignItems={"center"}>
       <Text mr={"20px"} fontWeight={500} fontSize={"18px"}>
-        {formatViewCount(totalCommentsCount)} Comments
+        {formatViewCount(comments?.totalCommentsCount)} Comments
       </Text>
       <Flex cursor={"pointer"}>
         <MdOutlineSort size={"24px"} />

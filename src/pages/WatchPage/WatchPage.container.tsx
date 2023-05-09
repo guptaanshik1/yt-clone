@@ -14,42 +14,52 @@ import useIntersectionObserver from "../../services/useIntersectionObserver";
 export default function WatchPageContainer() {
   const [searchParams] = useSearchParams();
   const videoId = searchParams.get("v");
-  // const { data: videoDetails, isLoading: isVideoDetailsLoading } =
-  //   useGetVideoDetails(videoId as string);
+  const { data: videoDetails, isLoading: isVideoDetailsLoading } =
+    useGetVideoDetails(videoId as string);
 
-  // const { data: relatedContent, isLoading: isRelatedLoading, fetchNextPage, hasNextPage } =
-  //   useGetRelatedContent(videoId as string);
+  const {
+    data: allRelatedContent,
+    isLoading: isRelatedLoading,
+    fetchNextPage,
+    hasNextPage,
+  } = useGetRelatedContent(videoId as string);
 
-  // const { data: commentsData, isLoading: isCommentsLoading } = useGetComments(
-  //   videoId as string
-  // );
+  const { data: commentsData, isLoading: isCommentsLoading } = useGetComments(
+    videoId as string
+  );
 
   // const repliesData = commentsData?.replies["0"];
   const ulRef = React.useRef(null);
   const [isShowFullDesc, setIsShowFullDesc] = React.useState(false);
   const [showReplyPost, setShowReplyPost] = React.useState(false);
-  const { totalCommentsCount, comments: allComments } = comments;
+  // const { totalCommentsCount, comments: allComments } = comments;
 
-  // useIntersectionObserver(fetchNextPage, hasNextPage, ulRef)
+  useIntersectionObserver(fetchNextPage, hasNextPage, ulRef);
+
+  const relatedContent = allRelatedContent?.pages?.flatMap(
+    (page) => page?.contents
+  );
 
   return (
     <WatchPageContext.Provider
       // @ts-ignore
       value={{
-        // videoDetails,
-        // isVideoDetailsLoading,
+        videoDetails,
+        isVideoDetailsLoading,
         // repliesData,
-        videoDetails: data,
+        // videoDetails: data,
         ulRef,
         relatedContent,
         videoId,
         isShowFullDesc,
         setIsShowFullDesc,
-        totalCommentsCount,
-        comments: allComments,
+        // totalCommentsCount,
+        comments: commentsData,
         replies,
         showReplyPost,
         setShowReplyPost,
+        isRelatedLoading,
+        isCommentsLoading
       }}
     >
       <WatchPageView />
