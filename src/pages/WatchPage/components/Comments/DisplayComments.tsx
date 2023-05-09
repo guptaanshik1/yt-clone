@@ -10,7 +10,7 @@ const DisplayComments = () => {
     <Flex mt={"20px"} flexDir={"column"}>
       {
         // @ts-ignore
-        comments?.map((comment) => (
+        comments?.comments?.map((comment) => (
           <Comment key={comment?.commentId} comment={comment} />
         ))
       }

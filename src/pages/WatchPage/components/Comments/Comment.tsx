@@ -54,7 +54,7 @@ const Comment = ({ comment }: IProps) => {
       };
     });
   };
-
+  
   return (
     <Flex mb={"20px"}>
       <Flex w={"60px"} mr={"10px"}>

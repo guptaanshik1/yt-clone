@@ -75,7 +75,7 @@ const Header = () => {
               <Flex
                 mt={"600px"}
                 position={"absolute"}
-                width={"340px"}
+                width={"30%"}
                 h={"auto"}
                 backgroundColor={"#FFFFFF"}
                 borderRadius={"12px"}

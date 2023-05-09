@@ -1,4 +1,4 @@
-import { Flex, ResponsiveValue } from "@chakra-ui/react";
+import { Flex, ResponsiveValue, Skeleton } from "@chakra-ui/react";
 import React from "react";
 import useScreenSize from "../../../../hooks/useScreenSize";
 import { useWatchPageContext } from "../../utils/context";
@@ -8,6 +8,7 @@ import PostComment from "./PostComment";
 
 const CommentsContainer = () => {
   const { isLargeScreen, isSmallScreen, isMediumScreen } = useScreenSize();
+  const { isCommentsLoading } = useWatchPageContext();
   const checkWidth = (): ResponsiveValue<number | (string & {})> => {
     if (isSmallScreen) {
       return "96%";
@@ -17,6 +18,16 @@ const CommentsContainer = () => {
       return "900px";
     }
   };
+
+  if (isCommentsLoading) {
+    return Array.from({ length: 9 }, (x, id) => {
+      return (
+        <Flex m={"40px 80px"} flexWrap={"wrap"} h={"100px"}>
+          <Skeleton p={"2px 8px"} w={"100%"} key={id} />
+        </Flex>
+      );
+    });
+  }
 
   return (
     <Flex
