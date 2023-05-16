@@ -1,12 +1,15 @@
 import { Flex, IconButton, Menu, MenuButton, Text } from "@chakra-ui/react";
 import React from "react";
 import { MdSort } from "react-icons/md";
+import { useChannelContext } from "../utils/context";
+import AllPlaylists from "./AllPlaylists";
 import PlaylistsMenu from "./PlaylistsMenu";
 
 const PlaylistsTabs = () => {
+  const { playlistsData } = useChannelContext();
 
   return (
-    <Flex w={"100%"}>
+    <Flex w={"100%"} flexDir={"column"}>
       <Flex
         justifyContent={"space-between"}
         alignItems={"center"}
@@ -38,6 +41,16 @@ const PlaylistsTabs = () => {
           <PlaylistsMenu />
         </Menu>
       </Flex>
+      {
+        // @ts-ignore
+        playlistsData?.map((playlist) => {
+          return (
+            playlist?.type === "playlist" && (
+              <AllPlaylists key={playlist?.playlistId} playlist={playlist} />
+            )
+          );
+        })
+      }
     </Flex>
   );
 };

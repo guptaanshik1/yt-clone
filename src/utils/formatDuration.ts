@@ -4,13 +4,14 @@ export const formatDuration = (duration: number): string => {
   const seconds = Math.floor(duration % 60);
 
   let time = "";
+
+  const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
+  const formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
+
   if (hours > 0) {
-    time += `${hours}:`;
+    time += `${hours}`;
   }
-  if (hours > 0 || minutes > 0) {
-    time += (minutes < 10 ? "0" + minutes : minutes) + ":";
-  }
-  time += seconds < 10 ? "0" + seconds : seconds;
+  time += `${formattedMinutes}:${formattedSeconds}`;
 
   return time;
 };
