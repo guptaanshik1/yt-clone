@@ -1,5 +1,4 @@
 import { Flex, IconButton, Menu, MenuButton, Text } from "@chakra-ui/react";
-import React from "react";
 import { MdSort } from "react-icons/md";
 import { useChannelContext } from "../utils/context";
 import AllPlaylists from "./AllPlaylists";
@@ -13,7 +12,6 @@ const PlaylistsTabs = () => {
       <Flex
         justifyContent={"space-between"}
         alignItems={"center"}
-        border={"1px solid blue"}
         w={"100%"}
         mt={"12px"}
       >
@@ -31,7 +29,7 @@ const PlaylistsTabs = () => {
               borderRadius: "full",
             }}
           >
-            <Flex border={"1px solid red"} w={"100px"} alignItems={"center"}>
+            <Flex w={"100px"} alignItems={"center"}>
               <MdSort size={"24px"} />
               <Text fontSize={"14px"} fontWeight={600} ml={"4px"}>
                 Sort By
@@ -46,7 +44,10 @@ const PlaylistsTabs = () => {
         playlistsData?.map((playlist) => {
           return (
             playlist?.type === "playlist" && (
-              <AllPlaylists key={playlist?.playlistId} playlist={playlist} />
+              <AllPlaylists
+                key={playlist?.playlist?.playlistId}
+                playlist={playlist}
+              />
             )
           );
         })
