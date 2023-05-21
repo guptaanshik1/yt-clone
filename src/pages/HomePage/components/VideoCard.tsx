@@ -19,6 +19,7 @@ import { VERIFIED_CHANNEL } from "../../../constants/homePageConstants";
 import { formatDuration } from "../../../utils/formatDuration";
 import ThumbnailPlayer from "../../../components/ThumbnailPlayer";
 import { useHomePageContext } from "../utils/context";
+import { Link } from "react-router-dom";
 
 const VideoCard = ({ ...video }) => {
   const { ulRef, isFetchingNextPage } = useHomePageContext();
@@ -142,9 +143,11 @@ const VideoCard = ({ ...video }) => {
             mt={"4px"}
           >
             <Flex flexDir={"row"}>
-              <Text fontSize={"12px"} mr={"8px"}>
-                {video?.author?.title}
-              </Text>
+              <Link to={`/${video?.author?.channelId}`}>
+                <Text fontSize={"12px"} mr={"8px"}>
+                  {video?.author?.title}
+                </Text>
+              </Link>
               {video?.author?.badges[0]?.type == VERIFIED_CHANNEL ? (
                 <chakra.span mt={"3px"}>
                   <GoVerified size={"12px"} />
