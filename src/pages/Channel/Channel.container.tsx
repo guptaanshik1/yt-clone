@@ -6,6 +6,7 @@ import { ChannelContext } from "./utils/context";
 import channelDetails from "../../mocks/channelDetails.json";
 import playlistsData from "../../mocks/playlistsData.json";
 import channelVideosLatest from "../../mocks/channelLatestVideos.json";
+import channelShorts from "../../mocks/channelShorts.json";
 import useChannelPlaylists from "./hooks/useChannelPlaylists";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setChannelId } from "../../features/channelSlice";
@@ -64,6 +65,8 @@ export default function ChannelContainer() {
         // channelChannelsData,
         // isChannelChannelsDataLoading,
         // channelChannelsRefetch,
+        // refetchChannelVideos
+        channelShorts,
       }}
     >
       <ChannelView />
