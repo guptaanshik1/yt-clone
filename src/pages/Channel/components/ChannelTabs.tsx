@@ -63,7 +63,9 @@ const ChannelTabs = () => {
           })}
         </TabList>
         <TabIndicator bg={"#606060"} />
-        <TabPanels>{currentComponent[currentTabRoute]}</TabPanels>
+        <TabPanels flexDir={"column"}>
+          {currentComponent[currentTabRoute]}
+        </TabPanels>
       </Tabs>
     </Flex>
   );
