@@ -1,17 +1,23 @@
 import { Flex } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 import { useChannelContext } from "../utils/context";
 import AllLiveTabs from "./AllLiveTabs";
 
 const LiveTab = () => {
   const { latestStreamsData } = useChannelContext();
-  console.log("latestStreamsData:", latestStreamsData);
+
   return (
     <Flex flexWrap={"wrap"} w={"100%"}>
       {
         // @ts-ignore
         latestStreamsData?.contents?.map((data) => (
-          <AllLiveTabs key={data?.video?.videoId} data={data?.video} />
+          <Link
+            to={`/watch?v=${data?.video?.videoId}`}
+            key={data?.video?.videoId}
+          >
+            <AllLiveTabs video={data?.video} />
+          </Link>
         ))
       }
     </Flex>
