@@ -5,7 +5,7 @@ import AllChannelShorts from "./AllChannelShorts";
 
 const ShortsTab = () => {
   const { channelShorts } = useChannelContext();
-  console.log("channelShorts:", channelShorts);
+
   return (
     <Flex flexDir={"row"} flexWrap={"wrap"} gridGap={"10px"}>
       {
