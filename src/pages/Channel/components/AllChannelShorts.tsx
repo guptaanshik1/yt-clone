@@ -9,7 +9,7 @@ interface IProps {
 
 const AllChannelShorts = ({ short }: IProps) => {
   const dispatch = useAppDispatch();
-  console.log("short:", short);
+
   return (
     <Flex
       h={"400px"}
