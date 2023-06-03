@@ -33,7 +33,6 @@ const ShortIcons = () => {
   });
 
   const handleLikeDisLike = (field: keyof typeof toggleLikeDislike) => {
-    console.log("field clicked:", [field]);
     setToggleLikeDislike((prev) => {
       if (field === "like" && prev.dislike) {
         return {
