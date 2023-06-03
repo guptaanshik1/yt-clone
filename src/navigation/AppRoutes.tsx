@@ -12,6 +12,7 @@ import { HomePage } from "../pages/HomePage";
 import { SearchResults } from "../pages/SearchResults";
 import { WatchPage } from "../pages/WatchPage";
 import { ChannelChannels } from "../pages/Channel/ChannelChannels";
+import { ShortsPlayer } from "../components/ShortsPlayer";
 
 const AppRoutes = () => {
   return (
@@ -21,6 +22,7 @@ const AppRoutes = () => {
         <Route path={"/results"} element={<SearchResults />} />
         <Route path={"/watch"} element={<WatchPage />} />
         <Route path={"/forms"} element={<FormPage />} />
+        <Route path={"/watch-shorts"} element={<ShortsPlayer />} />
         <Route path={"/:channelName"} element={<Channel />}>
           <Route path={"featured"} element={<HomeTab />} />
           <Route path={"videos"} element={<VideosTab />} />
