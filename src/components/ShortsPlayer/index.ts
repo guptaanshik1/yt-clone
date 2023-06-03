@@ -1,0 +1,1 @@
+export { default as ShortsPlayer } from "./ShortsPlayer.container";
