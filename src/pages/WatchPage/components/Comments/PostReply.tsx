@@ -4,10 +4,7 @@ import React from "react";
 import { GoSmiley } from "react-icons/go";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { useAppDispatch } from "../../../../app/hooks";
-import {
-  clearCommentIds,
-  removeCommentId,
-} from "../../../../features/replySlice";
+import { removeCommentId } from "../../../../features/replySlice";
 import useGetColorMode from "../../../../hooks/useGetColorMode";
 
 interface IProps {

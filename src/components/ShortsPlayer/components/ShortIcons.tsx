@@ -14,7 +14,6 @@ import {
   MdOutlineFeedback,
   MdOutlineOutlinedFlag,
 } from "react-icons/md";
-import { RiShareForwardFill } from "react-icons/ri";
 import { BsJustifyLeft } from "react-icons/bs";
 import { BiCaptions } from "react-icons/bi";
 import { IoBanOutline } from "react-icons/io5";
@@ -22,7 +21,7 @@ import { useShortsPlayerContext } from "../utils/context";
 import React from "react";
 
 const ShortIcons = () => {
-  const { isDark } = useShortsPlayerContext();
+  const { isDark, setShowComments, showComments } = useShortsPlayerContext();
 
   const [toggleLikeDislike, setToggleLikeDislike] = React.useState<{
     like: boolean;
@@ -56,42 +55,52 @@ const ShortIcons = () => {
   };
 
   return (
-    <Flex ml={"20px"} flexDir={"column"} gridGap={"20px"}>
-      <IconRender bg={toggleLikeDislike["like"] ? "black" : "#f2f2f2"}>
+    <Flex ml={"-30px"} flexDir={"column"} gridGap={"20px"}>
+      <IconRender
+        bg={toggleLikeDislike["like"] ? "black" : "#f2f2f2"}
+        isSelected={toggleLikeDislike["like"]}
+      >
         {!toggleLikeDislike["like"] ? (
           <AiFillLike
             size={"22px"}
-            color={"black"}
+            color={showComments ? "white" : "black"}
             onClick={() => handleLikeDisLike("like")}
           />
         ) : (
           <AiFillLike
             size={"22px"}
-            color={"white"}
+            color={showComments ? "black" : "white"}
             onClick={() => handleLikeDisLike("like")}
           />
         )}
       </IconRender>
-      <IconRender bg={toggleLikeDislike["dislike"] ? "black" : "#f2f2f2"}>
+      <IconRender
+        bg={toggleLikeDislike["dislike"] ? "black" : "#f2f2f2"}
+        isSelected={toggleLikeDislike["dislike"]}
+      >
         {!toggleLikeDislike["dislike"] ? (
           <AiFillDislike
             size={"22px"}
-            color={"black"}
+            color={showComments ? "white" : "black"}
             onClick={() => handleLikeDisLike("dislike")}
           />
         ) : (
           <AiFillDislike
             size={"22px"}
-            color={"white"}
+            color={showComments ? "black" : "white"}
             onClick={() => handleLikeDisLike("dislike")}
           />
         )}
       </IconRender>
-      <IconRender bg={isDark ? "#272727" : "#f2f2f2"}>
-        <RiShareForwardFill size={"22px"} color={isDark ? "white" : "black"} />
-      </IconRender>
-      <IconRender bg={isDark ? "#272727" : "#f2f2f2"}>
-        <MdInsertComment size={"22px"} color={isDark ? "white" : "black"} />
+      <IconRender bg={isDark ? "#272727" : "#f2f2f2"} isSelected={false}>
+        <MdInsertComment
+          size={"22px"}
+          color={showComments ? "white" : isDark ? "white" : "black"}
+          onClick={() => {
+            // @ts-ignore
+            setShowComments((prev) => !prev);
+          }}
+        />
       </IconRender>
       <Menu>
         <MenuButton
@@ -99,9 +108,9 @@ const ShortIcons = () => {
           _hover={{ background: "none" }}
           as={IconButton}
           borderRadius={"50%"}
-          color={isDark ? "white" : "black"}
+          color={showComments ? "white" : isDark ? "white" : "black"}
         >
-          <IconRender bg={isDark ? "#272727" : "#f2f2f2"}>
+          <IconRender bg={isDark ? "#272727" : "#f2f2f2"} isSelected={false}>
             <RxDotsHorizontal size={"22px"} />
           </IconRender>
         </MenuButton>

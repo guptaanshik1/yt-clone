@@ -3,9 +3,9 @@ import React from "react";
 import { useShortsPlayerContext } from "../utils/context";
 
 const WatchShorts = () => {
-  const { shortId } = useShortsPlayerContext();
+  const { shortId, showComments } = useShortsPlayerContext();
   return (
-    <Flex h={"100vh"}>
+    <Flex h={"100vh"} position={"relative"} transform={"translateX(-8%)"}>
       <iframe
         width="400"
         height="90%"

@@ -8,12 +8,16 @@ export default function ShortsPlayerContainer() {
   const shortId = useAppSelector((state) => state.shorts.shortId);
   const { isDark } = useGetColorMode();
 
+  const [showComments, setShowComments] = React.useState(false);
+
   return (
     <ShortsPlayerContext.Provider
       // @ts-ignore
       value={{
         shortId,
         isDark,
+        showComments,
+        setShowComments,
       }}
     >
       <ShortsPlayerView />
